@@ -18,14 +18,15 @@ SondaIConstruye.Framework.Entidad.NH
 SondaIConstruye.Framework.Enums
 SondaIConstruye.Framework.Hubs
 SondaIConstruye.Framework.Mappings
+<!-- Cada proyecto tendrá muchas carpetas dentro, esto refiere a los esquemas de la DB. Cada esquema tendrá sus clases que contendrán el código que crea y maneja a las Entidades.-->
 
-<!-- Cada proyecto tendrá muchas carpetas dentro, esto refiere a los esquemas de la DB. Cada esquema tendrá sus clases -->
 
+
+<!-- PROYECTOS: -->
+
+--SondaIConstruye.Framework.Entidad.NH
 <!--
 Las clases que determinarán el cuerpo de los objetos (sus propiedades y metodos) se encontrará en la carpeta NH dentro de cualquier esquema del proyecto "Entidad.NH" de la sección Entidades. La ruta es:
 Entidades -> Sondal...Entidad.NH -> Pliego -> NH -> clases
-
--- "Pliego" simula ser el esquema en donde se encuentra la tabla.
-
--- "NH" específica que es la carpeta en donde estarán las clases que se realizará la creacion, las otras tienen otros motivos.
+-- "Pliego" representa el esquema en donde se encuentra la tabla. "NH" específica que es la carpeta en donde estarán las clases que se realizará la creacion, las otras tienen otros fines.
 -->

@@ -1,11 +1,13 @@
+git checkout RamaTres -- ArchivosVistos.md
+
+
 Git es el sistema control de versiones más usado en el mundo. GIT nos permitirá tener un historial completo de todo el código que hemos ido desarrollando. 
 
 <!-- ROLLBACK -->
 Si el código se ve perjudicado por algo, podremos hacer un ROLLBACK hasta la anterior versión del proyecto.
 
 
-
-<!-- Primeros comandos a iniciar -->
+<!-- Primeros comandos a ejecutar para configurar GIT -->
 git config --global user.name "Agustin Dahbar"
 
 git-config --global user.email agustindahbarpp@hotmail.com
@@ -15,11 +17,10 @@ git config --global core.editor "code --wait"
 git config --global -e
 
 
+<!-- DEVELOPERS COMPARTIENDO REPOSITORIO DE GIT. (Uno en Windows y otro en Mac). -->
 <!-- core.autocrlf -->
 git config --global core.autocrlf true
-
-Supongamos que hay dos developers trabajando en el mismo repositorio. 
-Uno en Windows y otro en Mac. 
+ 
 En windows cada vez que agregamos un salto de línea, se agregarán dos carácteres especiales para poder marcar esa línea como un salto de línea, en este caso se usarán los carácteres Carriage Return (CR) & Line Feed (LF), pero en caso de LINUX/MAC solo se agregará un carácter, será Line Feed. 
 Si el dev de windows desea subir código deberá eliminar el Carriage Return, y si por el contrario quiere descargar código del repositorio, deberá agregar el carácter Carriage Return, para eso deberemos modificar la configuración de GIT y darle a la propiedad Core.Autocrlf un valor de TRUE. 
 Los usuarios de LINUX/MAC no están usando ese carácter, entonces al subir ellos el código, git no debería realizar ninguna acción sobre el código, pero si por alguna razón el usuario debido al editor de texto que el está utilizando o porque introdujo el carácter especial Carriage Return GIT debe eliminarla y no dejar subir el carácter, para esto la propiedad core.autocrlf debe tener el valor INPUT.
