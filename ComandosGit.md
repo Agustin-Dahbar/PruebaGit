@@ -13,7 +13,7 @@ Extras (164)
 
 
 
-<!-- UBICACIÓN DE DIRECTORIO -->
+<!-- COMANDOS UBICACIÓN DE DIRECTORIO -->
 cd /c/Users/Agustin
 <!-- cambiamos el directorio. No es necesario poner la ruta completa, podemos solo usar el comando con una sola carpeta y de ahí acceder de una en una. -->
 
