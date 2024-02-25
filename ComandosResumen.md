@@ -19,6 +19,8 @@ git branch <!--Se nos mostrarán todas las ramas del repositorio local de git-->
 git checkout -b nombreRama <!-- Creamos una rama y nos paramos sobre ella. -->
 git checkout nombreRama <!-- Seleccionamos otra rama para usar-->
 git checkout RamaTres -- ArchivosVistos.md <!--En la rama que ejecutó el código pegamos un archivo de la rama indicada-->
+git reset --hard hashDelCommit <!--Restauraremos un archivo con un commit anterior, eliminaremos el contenido de los siguientes commits aunque seguirán existiendo-->
+git reset --soft hashDelCommit <!--A diferencia del anterior, no se perderán los datos de los siguientes commits-->
 git merge SegundaRama <!--En la rama que ejecutó el código se pegarán todos los archivos de la rama indicada.-->
 git push -u origin SegundaRama<!-- Pusheamos ramas al repositorio web de github.-->
 
@@ -49,7 +51,8 @@ git diff <!-- Mostrará los cambios realizados recientemente-->
 git diff --staged <!--Mostrará los cambios de la staging area listos para commitearse. -->
 
 <!-- VER EL HISTORIAL DE CAMBIOS DE GIT -->
-git log <!-- Comando que se mostrará el historial de movimientos en el git ( mostrará todos los commits con su nombre, autor y fecha) -->
+git reflog <!--Comando que mostrara EL HISTORIAL COMPLETO-->
+git log <!-- Comando que se mostrará el historial reciente de movimientos en el git ( mostrará todos los commits con su nombre, autor y fecha) -->
 git log --oneline <!-- Para que se vea reducido en una línea. Solo se mostrará el nombre del commit y su hash (ID) -->
 
 <!-- BORRAR ARCHIVOS CON COMANDO GIT -->
@@ -73,3 +76,6 @@ $ git rm ComandosGit.md
 
 $ git rm -f ComandosGit.md
 <!-- rm 'ComandosGit.md' -->
+
+
+<!-- Preguntarle a Guille como resolver el no poder ejecutar comandos al usar git log || git reflog -->
