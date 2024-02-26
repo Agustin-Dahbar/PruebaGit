@@ -2,7 +2,7 @@
 
 <!-- Entidades -->
    <!-- SondaIConstruye.Framework.Entidad.NH -->
-        Aclaratoria.cs          (Pliego)
+        Aclaratoria.cs          (Pliego) == esquemas ** 
         Circular.cs             (Pliego)
         Convenio Marco          (Pliego)
         Pliego.cs               (Pliego)
