@@ -56,16 +56,12 @@ git log <!-- Comando que se mostrará el historial reciente de movimientos en el
 git log --oneline <!-- Para que se vea reducido en una línea. Solo se mostrará el nombre del commit y su hash (ID) -->
 
 <!-- BORRAR ARCHIVOS CON COMANDO GIT -->
-git rm archivo2.txt <!-- Además de borrarlo de los archivos locales (working directory) lo eliminamos del repositorio de git. -->
-git add archivo2.txt <!--Añadimos el delete a la staging area-->
-git commit -m "Eliminacion de archivo2.txt" <!--Commiteamos la eliminación para sobreescribirla.>
+git rm archivo2.txt <!-- Se borra el archivo. Pasa a la staging area automaticamente. Se debe sacar de allí para restaurarlo. (git restore --staged x -> git restore x) -->
+git restore --staged archivo2.txt <!--Lo sacamos de la staging area para restaurarlo.-->
 
-<!-- BORRAR ARCHIVOS CON COMANDO DE SISTEMA OPERATIVO -->
-rm archivo2.txt <!--Borramos el archivo del working directory (archivos locales) -->
-git add archivo2.txt<!--Añadimos la eliminación a la staging area para commitearla y capitalizarla.-->
-git commit -m "Eliminacion de archivo2.txt" <!-- Ahora realizaremos el commit de la eliminación. -->
-git restore archivo2.txt <!-- Recuperamos el archivo borrado -->
 
+<!-- RECUPERAR ARCHIVOS BORRADOS CON COMANDO DEL SISTEMA OPERATIVO-->
+rm archivo2.txt <!--Se borra el archivo, no pasa a la staging area, debemos hacerlo y luego commitearlo.>
 
 
 <!-- Problema al intentar borrar y su posterior solución -->
