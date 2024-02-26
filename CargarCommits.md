@@ -1,81 +1,28 @@
-<!-- Ubicación de directorio y creación del repositorio al que le iniciaremos GIT-->
-cd Users <!--Cambio de directorio (carpeta) (cd = change directory). -->
-cd .. <!--Retrocedemos al directorio anterior al que nos encontramos.-->
-mkdir nombreDelRepositorio <!--Creamos un nuevo directorio (carpeta). -->
+<!-- CARGAR COMMITS CON GIT RESET --soft -->
+git reset --soft 93cb3a
+<!-- Este comando mueve el puntero HEAD al commit especificado, pero deja los cambios en el directorio de trabajo y el índice de ensamblaje (staging index) tal como estaban. Es decir, no afecta los archivos en el directorio de trabajo ni los cambios que hayas preparado en el índice de ensamblaje (staging area). Se utiliza principalmente cuando deseas deshacer el último commit, pero mantener los cambios realizados para poder editarlos y volver a confirmarlos mediante el commit.
+En resumen, deshace el commit pero mantiene su contenido, estará en el staging area y se podrá volver a commitear o eliminar de allí para hacer un restore al commit anterior al borrado. -->
+git restore --staged hola.md <!-- Sacamos los cambios de la staging area, para poder restaurar el  commit seleccionado. --> 
+git restore hola.md <!--Restauramos el archivo a la versión del commit indicado en git reset --soft -->
 
-<!-- Comandos de git relacionados con la staging area -->
-git init <!--Inicializamos el repositorio de git en el directorio en el que nos encontremos-->
-git status (-s) <!--Muestra el estado de los archivos de la staging area (Added, Modified, Deleted, etc)-->
-git add nombreDelArchivo.suTerminacion <!--Seleccionaremos que archivos o modificaciones añadir a staging area-->
-git add .terminacionDeArchivos <!--Subirá o modificará todos los archivos con esa terminación a la staging area-->
-git commit -m "nombre commit"<!--Confirma los cambios que esten en el staging area y sobreescribe al archivo-->
-git restore <!--Recuperamos la versión del código del último commit guardado. Cargamos el último guardado.-->
-git restore --staged <!--Sacaremos al archivo de la staging area-->
-git rm --cached <!--Eliminamos un archivo de GIT de la staging area. Pero no se borrá de los archivos.-->
+<!-- CARGAR COMMITS CON GIT RESET --HARD -->
+git reset --hard 93cb3a 
+<!-- Este comando mueve el puntearo HEAD al commit especificado, pero a diferencia de --soft no conserva los cambios realizados posteriormente al commit invocado. Son eliminados del directorio de trabajo (archivos) y del índice de ensamblaje (staging area) -->
 
+Entonces cuando tengamos muchos archivos en el repositorio es mejor usar --soft asi no perdemos contenido del total de ellos. Analizamos en el staging area cuáles archivos querremos mantener y cuáles restaurar. Para mantenerlos les haremos un git commit y para restaurar un git restore.
 
-<!-- RAMAS -->
-git branch <!--Se nos mostrarán todas las ramas del repositorio local de git-->
-git checkout -b nombreRama <!-- Creamos una rama y nos paramos sobre ella. -->
-git checkout nombreRama <!-- Seleccionamos otra rama para usar-->
-git checkout RamaTres -- ArchivosVistos.md <!--En la rama que ejecutó el código pegamos un archivo de la rama indicada-->
-git reset --hard hashDelCommit <!--Restauraremos un archivo con un commit anterior, eliminaremos el contenido de los siguientes commits aunque seguirán existiendo-->
-git reset --soft hashDelCommit <!--A diferencia del anterior, no se perderán los datos de los siguientes commits-->
-git merge SegundaRama <!--En la rama que ejecutó el código se pegarán todos los archivos de la rama indicada.-->
-git push -u origin SegundaRama<!-- Pusheamos ramas al repositorio web de github.-->
-
-<!-- GITHUB -->
-git remote add origin https://giturl <!--Vinculamos nuestro repositorio local git al repositorio web de github-->
-git remote -v <!--Se nos mostrará la URL del repositorio web al que vinculamos nuestro repositorio local -->
-git push -u origin nombredelbranch <!--Pusheamos una rama al repositorio web de github-->
-
-
-<!-- EXTRAS -->
-cat messi.txt <!--Se muestra el contenido del archivo indicado.-->
-ls (-a) (-s) <!--Se nos mostrarán los archivos del repositorio local git.--> 
-<!-- -a agrega las carpetas ocultas (el repositorio .git) -s nos muestra el tamaño de cada directorio (carpeta) en bloques de discos -->
-git -h <!-- Help. Te da opciones. -->
-pwd <!--Mostrará el repositorio donde estamos ubicados. -->
-code . <!-- Abrimos en VSCODE el repositorio en el que estamos parados. -->
-clear <!-- Limpiamos git bash -->
-
-<!-- CAMBIAR NOMBRES DE ARCHIVOS Y SU PROCESO PARA ACTUALIZARLOS EN LA PÁGINA WEB -->
-git mv nombre.txt newNombre.txt <!-- Cambio de nombre. Ahora se debe agregar este cambio a staging area y commitearlo para pushearlo.-->
-git status <!-- Comprobamos el cambio de nombre. Deberá decir "Renamed" -->
-git add newNombre.txt <!-- Añadimos el cambio de nombre a la staging area. -->
-git commit -m "CambioDeNombre" <!-- Realizamos el commit para confirmar los cambios. -->
-git push -u origin <!-- Pusheamos al repositorio web todos los cambios commiteados. En este caso el "git mv" que fue commiteado. -->
-
-<!-- VER CAMBIOS REALIZADOS -->
-git diff <!-- Mostrará los cambios realizados recientemente--> 
-git diff --staged <!--Mostrará los cambios de la staging area listos para commitearse. -->
-
-<!-- VER EL HISTORIAL DE CAMBIOS DE GIT -->
-git reflog <!--Comando que mostrara EL HISTORIAL COMPLETO-->
-git log <!-- Comando que se mostrará el historial reciente de movimientos en el git ( mostrará todos los commits con su nombre, autor y fecha) -->
-git log --oneline <!-- Para que se vea reducido en una línea. Solo se mostrará el nombre del commit y su hash (ID) -->
-
-<!-- BORRAR ARCHIVOS CON COMANDO GIT -->
-git rm archivo2.txt <!-- Además de borrarlo de los archivos locales (working directory) lo eliminamos del repositorio de git. -->
-git add archivo2.txt <!--Añadimos el delete a la staging area-->
-git commit -m "Eliminacion de archivo2.txt" <!--Commiteamos la eliminación para sobreescribirla.>
-
-<!-- BORRAR ARCHIVOS CON COMANDO DE SISTEMA OPERATIVO -->
-rm archivo2.txt <!--Borramos el archivo del working directory (archivos locales) -->
-git add archivo2.txt<!--Añadimos la eliminación a la staging area para commitearla y capitalizarla.-->
-git commit -m "Eliminacion de archivo2.txt" <!-- Ahora realizaremos el commit de la eliminación. -->
-git restore archivo2.txt <!-- Recuperamos el archivo borrado -->
+Pero si tenemos un solo archivo o algunos pocos y sabemos con exactitud que queremos restaurarlos a todos y nunca necesitaremos nuevamente el contenido de los commits posteriores al que volveremos, deberiamos usar un --hard para ahorrarnos los pasos hacia la restauración que requiere --soft.
 
 
 
-<!-- Problema al intentar borrar y su posterior solución -->
-$ git rm ComandosGit.md
-% error: the following file has changes staged in the index:
-%     ComandosGit.md
-% (use --cached to keep the file, or -f to force removal)
-
-$ git rm -f ComandosGit.md
-<!-- rm 'ComandosGit.md' -->
+<!-- VER COMMITS GIT CHECKOUT -->
+git checkout 93cb3a
+<!-- Tendremos una vista previa de la versión del archivo en ese commit, fines de lectura. -->
 
 
-<!-- Preguntarle a Guille como resolver el no poder ejecutar comandos al usar git log || git reflog -->
+
+
+<!-- Podemos reemplazar el hash por un esta sintaxis. El número indica cuantos commits se retrocederá. De todas formas no puedo usarla por no tener en el teclado eso y no poder pegar en el bash. -->
+git reset --soft HEAD~1
+
+hola.md es el archivo donde realicé 3 commits para comprobar esto.
