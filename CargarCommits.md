@@ -26,3 +26,6 @@ git checkout 93cb3a
 git reset --soft HEAD~1
 
 hola.md es el archivo donde realicé 3 commits para comprobar esto.
+
+
+SI LEES ESTO EN EL ARCHIVO CargarCommits.md DE LA RAMA master, REALIZAMOS EL PULL REQUEST CORRECTAMENTE, YA QUE ESTO FUE ESCRITO EN LA RAMA RamaPullRequest.
