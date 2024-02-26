@@ -1,0 +1,5 @@
+<!-- hola.md es el archivo en el que hice 3 commits. una linea de codigo por cada uno. para moverse entre ellos de la forma mas seguro es mejor usar --soft en vez de --hard.-->
+git reset --soft hashDelCommit
+<!--Al usar soft, ya que se cargó un commit en donde el contenido era diferente al actual pero se conservó el contenido actual, se va a considerar como archivo modificado por lo tanto estará en el staging area asi que no podremos hacer el restore directo, debemos sacarlo del staging area con: -->
+git restore --staged hola.md <!-- Ahora si podremos restaurar el archivo a la versión del commit invocado. Esto nos puede servir tambien cuando estamos invocando un commit que afecte a mas de un archivo pero no querramos perder el contenido actual de varios de esos. Con hard se restaurarian todos directamente, con --soft ninguno, y nosotros ya seleccionamos cual restaurar sacandolo de la staging area y usando el comando siguiente -->
+git restore hola.md <!--Restauramos el archivo a la versión del commit indicado en git reset --soft >
