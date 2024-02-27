@@ -18,6 +18,7 @@ git rm --cached <!--Eliminamos un archivo de GIT de la staging area. Pero no se 
 git branch <!--Se nos mostrarán todas las ramas del repositorio local de git-->
 git checkout -b nombreRama <!-- Creamos una rama y nos paramos sobre ella. -->
 git checkout nombreRama <!-- Seleccionamos otra rama para usar-->
+git checkout 93cb3a <!--Mediante su hash cargamos un commit especifico. No -->
 git checkout RamaTres -- ArchivosVistos.md <!--En la rama que ejecutó el código pegamos un archivo de la rama indicada-->
 git reset --hard hashDelCommit <!--Restauraremos un archivo con un commit anterior, eliminaremos el contenido de los siguientes commits aunque seguirán existiendo-->
 git reset --soft hashDelCommit <!--A diferencia del anterior, no se perderán los datos de los siguientes commits-->
@@ -28,6 +29,7 @@ git push -u origin SegundaRama<!-- Pusheamos ramas al repositorio web de github.
 git remote add origin https://giturl <!--Vinculamos nuestro repositorio local git al repositorio web de github-->
 git remote -v <!--Se nos mostrará la URL del repositorio web al que vinculamos nuestro repositorio local -->
 git push -u origin nombredelbranch <!--Pusheamos una rama al repositorio web de github-->
+git clone https://... <!--Clonaremos un repositorio mediante su URL-->
 
 
 <!-- EXTRAS -->
