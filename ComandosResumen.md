@@ -23,6 +23,9 @@ git rm --cached <!--Eliminamos un archivo de GIT de la staging area. Pero no se 
 git diff <!-- Mostrará los cambios realizados recientemente--> 
 git diff --staged <!--Mostrará los cambios de la staging area listos para commitearse. -->
 
+<!-- DATA IMPORTANTE DE LOS COMMITS. SE COMMITEARÁ TODO LO QUE ESTE EN STAGING AREA SIN IMPORTAR LA CARPETA. ES DECIR SI EL DIRECTORIO SELECCIONADO DEL BASH ES "REPOSITORIO" TODOS LOS CAMBIOS EN STAGING AREA DE CUALQUIER CARPETA ANIDADA A "REPOSITORIO" SE COMMITEARA. SI TENGO ARCHIVOS CON CAMBIOS EN LA STAGING AREA EN LAS CARPETAS "Comprar" y "RepoDos" tambíen se commitearán por estar anidadas dentro del directorio seleccionado en el bash.
+No es necesario hacer 3 commits uno por cada carpeta, basta con hacerlo en la carpeta padre. -->
+
 
 <!-- RAMAS -->
 git branch <!--Se nos mostrarán todas las ramas del repositorio local de git-->
