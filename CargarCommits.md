@@ -22,7 +22,21 @@ git checkout 93cb3a
 
 
 
-<!-- Podemos reemplazar el hash por un esta sintaxis. El número indica cuantos commits se retrocederá. De todas formas no puedo usarla por no tener en el teclado eso y no poder pegar en el bash. -->
+<!-- Podemos reemplazar el hash por un esta sintaxis. El número indica cuantos commits se retrocederá. De todas formas no puedo usarla por no tener en el teclado eso y no poder pegar en el bash. --> PREGUNTAR A GUILLE COMO HACERLO. ME AHORRARÍA MUCHO TIEMPO.
 git reset --soft HEAD~1
 
 hola.md es el archivo donde realicé 3 commits para comprobar esto.
+
+
+
+<!-- INTENTO DE PULL REQUEST, FALLIDO. SOLUCIÓN TEMPORAL Y PERMITIDA EN ESTA SITUACIÓN. -->
+
+<!-- Intente hacer el pull request pero fallé, luego lo reintentaré. Entonces mi solución fue hacer -->
+git checkout RamaPullRequest - CargarCommits.md
+<!-- Exitosamente se pegó el archivo de esa rama. El problema con esto, es que PEGA TODO EL ARCHIVO (no únicamente nuestra modificación (commit)), en este caso lo pude utilizar, porque el código era idéntico, pero si es diferente se reemplazará todo, y nosotros solo queremos la edición hecha en el commit, por lo tanto, solución en este contexto, aprender a hacer correctamente la pull request. De todas formas podemos restaurar fácilmente el código en caso de usar un git checkout y arruinar el código, con:  -->
+git restore CargarCommits.md
+<!-- Asi cargaremos la versión anterior de la rama, la final, claro mientras no hayas commiteado el archivo luego del git checkout. Pero de todas formas, si hubieramos cometido ese error también tendría solución, sería tan fácil como usar un  -->
+git reset --hard hashDelCommit
+<!-- Con hard eliminaremos el código actual modificado y la versión deseada se cargará automaticamente. Con soft mantendríamos el código y el archivo estaría en un estado de modified dentro de la staging area, esperando de hacerse un commit para sobreescribir el archivo, o un restore del mismo archivo, que requerería que el archivo salga de la staging area para poder ejecutarse, el orden sería: -->
+git restore --staged fileName --> git restore fileName.
+
