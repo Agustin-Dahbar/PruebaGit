@@ -1,30 +1,51 @@
 <!-- Secciones -->
 
-<!-- Entidades -->
-   <!-- SondaIConstruye.Framework.Entidad.NH -->
-        Aclaratoria.cs          (Pliego) == esquemas ** 
+                                                            ENTIDADES
+   <!-- SondalConstruye.Framework.Entidad.DTO -->
+
+   <!-- SondalConstruye.Framework.Entidad.NH -->
+        Aclaratoria.cs          (Pliego)     (Esquemas)
         Circular.cs             (Pliego)
         Convenio Marco          (Pliego)
         Pliego.cs               (Pliego)
         Evaluador               (Evaluación)
         EvaluadoresConsiderados (Evaluación)
-   <!-- SondaIConstruye.Framework.Enums -->
-        Estados.cs (Circular)
-        Tipos.cs   (Circular)
+
+   <!-- SondalConstruye.Framework.Enums -->
+        Estados.cs 
+        Tipos.cs   
+        EnuRibs.cs
+        EnumOc.cs
 
 
-<!-- Interfaces -->
-   <!-- SondaIConstruye.Framework.Interfaces.Datos -->
+                                                            INTERFACES
+   <!-- SondalConstruye.Framework.Interfaces.Datos -->
         ProcuracionDAO.cs
 
 
-<!-- Procesos -->
 
 
-<!-- Servicios -->
+
+                                                            PROCESOS
 
 
-<!-- WebSites -->
+
+
+
+                                                            SERVICIOS 
+
+
+
+
+
+
+
+
+
+
+
+
+                                                            WEBSITES
 
 <!-- Sección: Controles -->
 <!-- header.ascx  -->

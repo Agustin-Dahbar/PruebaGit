@@ -40,6 +40,9 @@ Entidades -> Sondal...Entidad.NH -> Pliego -> NH
 --SondalIConstruye.Framework.Enums
 <!-- 
 En este proyecto se encontrarán clases dentro tendrán interfaces, estos devolverán una opción entre muchas posibles. Por ej un interfaz tendrá todos los "Estados" de un pliego posibles, y devolverá uno solo de ellos por cada pliego, en el código de la solución los comentamos para verlos en profundidad.
+Habrá dos tipos de clases, las que contengan enumerados encargados de crear los diferentes estados y las clases que contengan los metodos que manejarán la lógica para retornar los estados del objeto correspondiente.
+Ejemplo, tendremos una clase "Estados.cs" (en el Explorador de Soluciones) en sintaxis donde se accede a ella se llamara "EnuEstados", esta clase es del primer tipo posee muchos enumerados que contiene las diferentes opciones,estados, descripciones para diferentes objetos, ej hay un enumerado con los estados del ConvenioMarco y luego hay otra clase (EstadoConvenioMarcoEnum.cs) que mediante un metodo devuelve esta información, esta información se argumenta al metodo y se obtiene desde el enumerado en el otro archivo.
+Entonces los archivos con enumerados tienen fines de capa de datos (data layer) y los archivos con metodos que son argumentados con los valores de estos enumerados para ser devueltos en el front end tienen fines de capa de negocio (business layer)  
 -->
 
 
@@ -73,12 +76,38 @@ Ejemplo:
 
 
 2. Interfaces (11 proyectos)
-<!--
-Esta sección es donde mediante los proyectos (bibliotecas de clases) nos pondremos en contacto con los servicios externos (sistemas) para llevar a cabo tareas que requieran de ellos. 
+
+<!-- Esta sección es donde mediante los proyectos (bibliotecas de clases) nos pondremos en contacto con los servicios externos (sistemas) para llevar a cabo tareas que requieran de ellos. 
 Ej: Si necesitamos autorizar en SIDICO, obtener un número de expediente de GDE.
 
-En el primer nivel de jerarquía 
--->
+En el primer nivel de jerarquía se encuentran 2 secciones (carpetas) y 4 proyectos (bibliotecas de clases) las explicaremos: -->
+
+    - Sección "Interfaces"
+<!-- aquí se encontrarán en 5 proyectos diferentes los datos (Datos), los objetos (Entidad.DTO), las interfaces (Interface), los servicios (Servicios) y la lógica de negocio (Negocio) de la sección PADRE "Interfaces". Esta sección hija es la más importante de la sección padre (ambas "Interfaces"). -->
+
+
+    - Sección "Interop" 
+<!-- tendrá dos proyectos  -->
+        --Datos: 
+<!-- tendrá los datos en una clase llamada "ProcesosDAO.cs".   -->
+        
+        --Interop: 
+<!-- tendrá dos carpetas (DTO && EXCEPTIONS) donde se encontrarán el objeto visual (DictamenProcuracionDTO) y las excepciones controladas. 
+
+También tendrá 3 clases en el mismo nivel de jerarquía a estas carpetas. -->
+
+        --Conversor.cs
+<!-- esta clase convertirá los datos de varios objetos visuales (DTO) -->
+
+        --Servicio.cs
+<!-- esta clase tendrá el servicio para conectarse con SIGAF. -->
+ 
+
+        --UtilDTO.cs
+<!-- en esta clase se desarrollan metodos públicos y estáticos que instanciaran clases de la solución es decir, crearán objetos. Para lograr esto necesitamos un servicio local, este busca a estas clases que se ubican en otra parte del código de la solución. Los valores de las propiedades se asignan con los parametros del metodo público y estático ejecutado.
+Domicilio, ClasificadorPresupuestario, Comprobante son alguna de las clases instanciadas en esta clase.  -->
+
+<!-- AHORA LOS 4 PROYECTOS (BIBLIOTECAS DE CLASE) DEL PRIMER NIVEL DE JERARQUÍA -->
 
 
 
