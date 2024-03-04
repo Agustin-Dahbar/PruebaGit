@@ -2,6 +2,7 @@
 
                                                             ENTIDADES
    <!-- SondalConstruye.Framework.Entidad.DTO -->
+           
 
    <!-- SondalConstruye.Framework.Entidad.NH -->
         Aclaratoria.cs          (Pliego)     (Esquemas)
@@ -19,8 +20,27 @@
 
 
                                                             INTERFACES
-   <!-- SondalConstruye.Framework.Interfaces.Datos -->
-        ProcuracionDAO.cs
+   
+Esta sección tiene una sección menor que se llama igual a ella, en ella se manejan los servicios locales. Se divide en 5 proyectos, ellos harán referencia a los datos, los objetos DTO, las interfaces, la lógica de negocio y los servicios.
+
+-INTERFACES (CARPETA-SECCIÓN HIJA)
+<!-- SondalConstruye.Framework.Interfaces.Datos -->
+        ProcuracionDAO.cs 
+
+<!-- SondalConstruye.Framework.Interfaces.Entidades.DTO -->
+        ConsultaExpedienteDetallado.cs
+
+<!-- SondaIConstruye.Framework.Interfaces.Interface  -->
+        IServicioSEAC.cs
+
+<!-- SondaIConstruye.Framework.Interfaces.Negocio -->
+        Procuracion.cs
+
+<!-- SondaIConstruye.Framework.Interfaces.Servicios -->
+        
+
+- INTEROP (CARPETA-SECCIÓN HIJA)
+
 
 
 
