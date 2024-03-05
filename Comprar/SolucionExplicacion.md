@@ -92,21 +92,39 @@ En el primer nivel de jerarquía se encuentran 2 secciones (carpetas con proyect
 - Sección "Interfaces"
 <!-- Esta sección manejará los servicios locales. Se divide en 5 proyectos, ellos harán referencia a los datos, los objetos DTO, las interfaces, la lógica de negocio y los servicios -->
 
--Interfaces.Datos
+  -Interfaces.Datos
 <!-- En este proyecto se realiza un create, update o select de un objeto (ticket) en la base de datos.  -->
         
--Interfaces.EntidadDTO
+  -Interfaces.EntidadDTO
 <!-- En este proyecto se encuentran los objetos que serán manipulados por los servicios,  -->
 
--Interfaces.Interfaces
+  -Interfaces.Interfaces
 <!-- En este proyecto se crea una interface pública que almacena el total de los servicios disponibles para usar sobre la solución local SEAC. Cada servicio tendrá un atributo descriptivo. [OperationContract]
-Estos servicios serán argumentados con los objetos que manipulen, que se encontrarán usualmente en el proyecto "Interfaces.EntidadDTO" -->
+Estos servicios serán argumentados con los objetos que manipulen, que se encontrarán usualmente en el proyecto "Interfaces.EntidadDTO"
+Cada servicio de esta clase será referenciado en Interfaces.Servicios -->
 
--Interfaces.Negocio
-<!-- Este es el proyecto en el que estarán desarrollados todos los servicios mencionados en el proyecto anterior "Interfaces.Interfaces" -->
+  -Interfaces.Negocio
+<!-- En este proyecto habrá clases que desarrollarán todos los metodos ubicados en la interfaz del proyecto Interfaces.Interfaces. Ejemplo de uno de ellos: -->
 
--Interfaces.Servicios
-<!--  -->
+    - Este proyecto tendrá una carpeta "Web References"
+   <!-- En ella, habrá archivos raros que desconozco que son que tendrán los servicios relacionados. Serán 5 archivos con diferentes servicios. Luego estos servicios se llamarán en las clases aisladas del primer nivel de jerarquía del proyecto en el que estamos (Interfaces.Negocio). -->
+
+
+  -Interfaces.Servicios
+<!-- Encontramos una clase ServicioSEAC.cs que creará metodos para ejecutar servicios. 
+Los servicios están en clases dentro del proyecto "Interfaces.Negocio" por lo que deberemos instanciar esa clase para poder acceder a ellos. Un ejemplo: -->
+
+public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
+{
+    Negocio.ServicioBAC servicioBAC = new SondaIConstruye.Framework.Interfaces.Negocio.ServicioBAC(); 
+    return servicioBAC.SincronizarOrdenCompra(documento); 
+}
+
+<!-- En estos metodos del proyecto Servicios no solo nos conectamos con Interfaces.Negocio por usar servicios de sus clases, si no tambien con Interfaces.Interfaces ya que el nombre de los metodos es el mismo que el de los servicios dentro de la interfaz en Interfaces.Interfaces y se puede comprobar viendo que estan referenciados.  -->
+
+<!-- Fin de la sección hija "Interfaces" de la sección padre "Interfaces" en resumen aquí se manejan los servicios locales de la solución. En Interfaces.Negocio hay clases donde estos servicios son desarrollados, en Interfaces.Interfaces se muestra una interfaz (IServicioSEAC) con todos los servicios desarrollados en "Negocio" dentro de ella. Y luego en Interfaces.Servicios se crean metodos que llamarán a estos servicios, pero en vez de llamarlos directamente de la interfaz IServicioSEAC en "Interfaces" los llama desde las clases donde fueron desarrollados en "Negocio". Y la única conexión que realiza con "Interfaces" es usar el mismo nombre que se le designo al servicio en la interfaz de "Interfaces".  -->
+
+
 
 
 

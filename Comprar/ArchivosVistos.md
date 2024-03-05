@@ -31,12 +31,22 @@ Esta sección tiene una sección menor que se llama igual a ella, en ella se man
         ConsultaExpedienteDetallado.cs
 
 <!-- SondaIConstruye.Framework.Interfaces.Interface  -->
-        IServicioSEAC.cs
+        IServicioSEAC.cs (interfaz con los servicios)
 
 <!-- SondaIConstruye.Framework.Interfaces.Negocio -->
         Procuracion.cs
+        ServicioIntercomunicacionBAC (en este proyecto heredaremos servicios del siguiente: )
+   
+   <!-- Carpeta "Web References" en "Interfaces.Negocio" -->
+        IntercomunicacionBAC 
+        
+<!-- SondalConstruye.Framework.Interfaces.Servicios -->
+        ServicioSEAC (Esta clase heredará de la interfaz IServicioSEAC.cs (Línea 34) para usar sus servicios) 
+
+
 
 <!-- SondaIConstruye.Framework.Interfaces.Servicios -->
+        ServicioSEAC.cs
         
 
 - INTEROP (CARPETA-SECCIÓN HIJA)
