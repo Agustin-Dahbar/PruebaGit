@@ -31,7 +31,7 @@ No es necesario hacer 3 commits uno por cada carpeta, basta con hacerlo en la ca
 git branch <!--Se nos mostrarán todas las ramas del repositorio local de git-->
 git checkout -b nombreRama <!-- Creamos una rama y nos paramos sobre ella. -->
 git checkout nombreRama <!-- Seleccionamos otra rama para usar-->
-git checkout RamaTres -- ArchivosVistos.md <!--En la rama que ejecutó el código pegamos un archivo de la rama indicada-->
+git checkout master -- ArchivosVistos.md <!--En la rama que ejecutó el código pegamos un archivo de la rama indicada-->
 git merge SegundaRama <!--En la rama que ejecutó el código se pegarán todos los archivos de la rama indicada.-->
 
 
