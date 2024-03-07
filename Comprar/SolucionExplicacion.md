@@ -95,7 +95,8 @@ En el primer nivel de jerarquía se encuentran 2 secciones (carpetas con proyect
 <!-- Esta sección manejará los servicios locales. Se divide en 5 proyectos, ellos harán referencia a los datos, los objetos DTO, las interfaces, la lógica de negocio y los servicios -->
 
                                                 -Interfaces.Datos
-<!-- En este proyecto se realiza un create, update o select de un objeto (ticket) en la base de datos.  -->
+<!-- En este proyecto se crea, actualiza o busca un objeto de la clase ticket en la base de datos.
+Mediante metodos que ejecutan procesos de la base de datos. La lógica consiste en mapear la base de datos y el procedure instanciando las clases correctas y en la asignación de esta instancia ejecutar un metodo para realizar el mapeo de base de datos y proceso, estos metodos son: CreateDataBase() y GetStoredProcedure(), ambos metodos deben argumentarse con el nombre de la DB y del SP. (DATABASE, STORED PROCEDURE)  -->
         
 
 
@@ -120,7 +121,7 @@ Cada servicio de esta clase será referenciado en Interfaces.Servicios -->
 
 
                                                 -Interfaces.Servicios
-<!-- En este proyecto se llamarán a los servicios desarrollados en las clases del proyecto "Negocio" se hará mediente un metodo que será el final. 
+<!-- En este proyecto se llamarán a los servicios desarrollados en las clases del proyecto "Negocio" se hará dentro de un metodo encapsulador que será el metodo final. 
 Un ejemplo: -->
 public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 {

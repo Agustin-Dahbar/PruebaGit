@@ -4,12 +4,31 @@
 <!-- SECCIÓN INTERFACES  --> NAMESPACE DE LOS ARCHIVOS ENTRE ()
 
 <!-- Sección menor Interfaces -->
+ProcuracionDAO (Interfaces.Datos)
+<!-- Este archivo contiene metodos que crean comandos ejecutores de stored procedure de la db. Se deben adaptar estos procedimientos a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET, POST O PUT  -->
+
+IServicioSEAC.cs (Interfaces.Interface)
+<!-- Este es el archivo que contiene la interface que encapsula todos los servicios locales.-->
+
+ServicioBAC.cs (Interfaces.Negocio)
+<!-- En este archivo se llama a los servicios ubicados dentro de clases en la carpeta especial "WCF_BAC" de "Services References". Habrá diferentes regiones (secciones) que tendrán sus propios servicios. Ejemplo la Region "Proveedores". En esta región se llamarán a los servicios "AltaProveedor", "ModificacionProveedor", "BajaProveedor"  que se ubicarán en la clase "ServicioClient" (7280, (7357, 7361, 7365)) == líneas de código de la clase y sus servicios en la carpeta especial WCF_BAC.
+Esta clase ServicioClient de WCF_BAC solo será referenciada por este archivo (ServicioBAC.CS) y PresupuestoSIGAF.cs. El resto de archivos de Interfaces.Negocio no la usan. -->
+
+WCF_BAC (Interfaces.Negocio.Service References)
+<!-- Estos archivos dentro de "Service References" sirven para almacenar lógica o llamados a servicios que usarán el resto de archivos de la interfaz Negocio. Aquí estarán las referencias hechas al llamar servicios, de ahí el nombre de la sección. En el se encuentran clases, enumerados, interfaces, metodos, etcetera. Hay clases con distintos fines, por ejemplo, primero se declarán las clases que crearán los objetos involucrados en los servicios, para que estos sean los argumentos de los próximos servicios, las propiedades de estas clases tendrán una sintaxis desarrollada ya que se les darán capacidades de get y set y además en caso de SET se comprobará que el nuevo valor sea != al aún actual. Ya con esas clases que nos aseguren tener los argumentos de los servicios, creamos otras clases que encapsularán los servicios, no la lógica de ellos, si no el llamado a ellos, la lógica estará en un sistema externo..   -->
+
+ConversorGetBenificiario.cs (Interfaces.Negocio)
+<!-- Este archivo contiene un metodo que se encarga de hacer una conversión de un objeto, en este caso un de "beneficiarioBean" a un "BeneficiarioSidif" 
+Este archivo no se conecta con el mismo archivo de "Web Services" para obtener los datos necesarios de sistemas externos, si no que lo hace con eSidifGetBeneficiario.   -->
+
+
+eSidifGetBeneficiario (Interfaces.Negocio.Service References)
+<!-- Este es otro de los archivos que almacena las referencias de los servicios. Es el usado por la clase vista anterior. Lo usamos para heredar la clase con la que tiparemos al argumento.   -->
+
+
 ServicioSEAC.cs (Interfaces.Servicios)
  <!-- En el se crean metodos con try/catch que ejecutan los servicios locales desarrollados en las clases del proyecto "Negocio" de Interfaces.Interfaces.
  Los nombres de estos metodos coinciden con los nombres de los metodos de la interface IServicioSEAC ubicada en el proyecto "Interface" -->
-
-IServicioSEAC.cs (Interfaces.Interface)
-<!-- Este es el archivo que contiene la interface recientemente mencionada y que se encuentra en el proyecto "Interface" de Interfaces.Interfaces -->
 
 
 <!-- Sección Interop -->
