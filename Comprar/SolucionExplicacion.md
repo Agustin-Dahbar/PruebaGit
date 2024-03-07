@@ -10,8 +10,8 @@ La solución se divide en diferente secciones que serán carpetas, las más impo
 <!-- En este archivo desarrollaremos las características de cada sección. En la solución están los comentarios explicativos de la sintaxis del código.-->
 
 1. Entidades (5 proyectos)
-<!-- En esta sección se encontrarán los objetos que serán mapearados al proyecto desde la base de datos, específicamente desde las tablas, sus filas serán las entidades mapeadas como objetos. 
-Cada sección tiene diferentes proyectos (bibliotecas de clases que apuntan a diferentes cosas pero con relación a los mismos objetos existentes).
+<!-- Esta sección es la capa de las entidades de se encontrarán los objetos que serán mapeados al proyecto desde la base de datos, específicamente desde las tablas, sus filas serán las entidades mapeadas como objetos. 
+Cada sección tiene diferentes proyectos (bibliotecas de clases que se encargarán de diferentes tareas con relación a estos objetos). 
 
 PROYECTOS (bibliotecas de clases) -->
 SondaIConstruye.Framework.(Entidad.DTO/Entidad.NH/Enums/Hubs/Mappings)
@@ -24,24 +24,23 @@ SondaIConstruye.Framework.(Entidad.DTO/Entidad.NH/Enums/Hubs/Mappings)
 <!-- 
 En este proyecto se encontrará el objeto visual. Es el objeto que será devuelto en el Frontend. 
 (DTO == Data Transfer Object; Objeto de transferencia de datos) 
-Los objetos de este proyecto serán los puentes entre la sección de datos y el resto de secciones de la solución.
-La sección de datos (seccion "Entidades") solo ve el objeto del proyecto NH que estabamos viendo antes pero cuando lo tiene que compartir a la presentación o a la interfaz lo que se comparte es el DTO, es decir el objeto del proyecto .DTO, no el del proyecto .NH.
-
-Sección de datos significa: 
+Los objetos de este proyecto son el puentes entre la sección de datos y el resto de secciones de la solución.
+La sección de datos (seccion "Entidades") solo ve los objetos de bases de datos, los del proyecto NH pero cuando lo tiene que compartir a la presentación o a la interfaz lo que se comparte es el DTO, NO EL NH.
 -->
 
 
                                                 --SondaIConstruye.Framework.Entidad.NH
 <!--
-En este proyecto se encontrarán los diferentes objetos que existirán en la solución desde el punto de vista de base de datos, es la creación más completa y auténtica posible del objeto. Es el objeto Backend, no se mostrará en el frontend. 
-Los objetos se crearán a partir de clases que determinarán las propiedades y metodos de los mismos, estarán en la carpeta "NH" en el esquema correspondiente (carpeta) dentro del proyecto. 
+En este proyecto se encontrarán los objetos de la base de datos, es decir es la creación más completa y auténtica posible del objeto. Es el objeto Backend, no se mostrará en el frontend. 
+Estos objetos se crearán a partir de clases que determinarán sus propiedades y metodos, estarán en la carpeta "NH" en el esquema correspondiente (carpeta) dentro del proyecto.
+LAS CLASES DE ESTE PROYECTO HEREDERÁN DE DomainObject (clase del framework NA EVERNET, EL ORM PARA MAPEO) 
 La ruta a este proyecto es:
-Entidades -> Sondal...Entidad.NH -> Esquema -> NH   
+Entidades -> Sondal...Entidad.NH -> Esquema -> NH    
 
 Clases == Tablas; Objetos == Filas; Propiedades == Columnas.
 --> 
 
-<!-- Estos dos primeros proyectos vistos estan relacionados entre sí ya que referencian a los objetos, pero uno habla del visual y otro del de base de datos. Un proyecto se encarga de su presentación (DTO) y otro de su creación mediate mapeación (NH) mapeación que logramos con el ORM A-EVERNET y los archivos de configuración .xml (en el proyecto Mappings) -->
+<!-- Estos dos primeros proyectos vistos estan relacionados entre sí ya que referencian a los objetos, pero uno habla del visual y otro del de base de datos. Un proyecto se encarga de su presentación (DTO) y otro de su creación mediate mapeación (NH) mapeación que logramos con el ORM NA-EVERNET y los archivos de configuración .xml (en el proyecto Mappings) -->
 
 
                                                 --SondalIConstruye.Framework.Enums
@@ -60,7 +59,7 @@ Entonces los archivos con enumerados tienen fines de capa de datos (data layer) 
 
                                                 --SondalIConstruye.Framework.Mappings
 <!-- 
-En este proyecto se encuentran archivos .XML. Estos archivos se encargarán de cumplir el mapeo entre las filas de las tablas de la DB y los objetos de las clases del IDE, son archivos de configuración. Estos archivos tendrán etiquetas que deberemos llenar con la información adecuada para representar la tabla y clase mapeadas entre si.
+En este proyecto que es de acceso a datos se encuentran archivos .XML. Estos archivos se encargarán de cumplir el mapeo entre las filas de las tablas de la DB y los objetos de las clases del IDE, son archivos de configuración. Estos archivos tendrán etiquetas que deberemos llenar con la información adecuada para representar la tabla y clase mapeadas entre si.
 Ejemplo:
 --> 
 <class name="Pliego" schema="PLI" table="pliego">
@@ -69,8 +68,11 @@ Ejemplo:
 </id>
 <property name="NumeroPliego" type="string">
 <property name="FechaCreacion" type="DateTime">
-<!-- La etiqueta class pide los nombres de la tabla y clase a mapear además del esquema donde se ubican.  -->
-<!-- La etiqueta property representa a las propiedades de la clase/tabla, indicamos su nombnre y su tipado -->
+<!-- La etiqueta class pide los nombres de la tabla y clase a mapear además del esquema donde se ubican -->
+<!-- La etiqueta ID generará una identificación para este mapeo realizado PREGUNAR GUILLE.-->
+<!-- La etiqueta property representa a las propiedades/columnas de la clase/tabla, indicamos su nombre y su tipado -->
+<!-- El framework NA EVERNET se ocupará al hacer de hacer las tareas al nosotros ejecutarlas con: Pliego.Save(), Pliego.Find() o la que corresponda. -->
+
 
 
 
@@ -92,37 +94,43 @@ En el primer nivel de jerarquía se encuentran 2 secciones (carpetas con proyect
 - Sección "Interfaces"
 <!-- Esta sección manejará los servicios locales. Se divide en 5 proyectos, ellos harán referencia a los datos, los objetos DTO, las interfaces, la lógica de negocio y los servicios -->
 
-  -Interfaces.Datos
+                                                -Interfaces.Datos
 <!-- En este proyecto se realiza un create, update o select de un objeto (ticket) en la base de datos.  -->
         
-  -Interfaces.EntidadDTO
+
+
+                                                -Interfaces.EntidadDTO
 <!-- En este proyecto se encuentran los objetos que serán manipulados por los servicios,  -->
 
-  -Interfaces.Interfaces
+
+
+                                                -Interfaces.Interfaces
 <!-- En este proyecto se crea una interface pública que almacena el total de los servicios disponibles para usar sobre la solución local SEAC. Cada servicio tendrá un atributo descriptivo. [OperationContract]
 Estos servicios serán argumentados con los objetos que manipulen, que se encontrarán usualmente en el proyecto "Interfaces.EntidadDTO"
 Cada servicio de esta clase será referenciado en Interfaces.Servicios -->
 
-  -Interfaces.Negocio
-<!-- En este proyecto habrá clases que desarrollarán todos los metodos ubicados en la interfaz del proyecto Interfaces.Interfaces. Ejemplo de uno de ellos: -->
 
-    - Este proyecto tendrá una carpeta "Web References"
+
+                                                -Interfaces.Negocio
+<!-- En este proyecto dentro de clases se encuentra la lógica de todos los servicios locales, identificados en la interfaz del proyecto "Interface". Luego estos estos metodos con la lógica son llamados en el proyecto "Servicios". -->
+
+        - Este proyecto tendrá una carpeta "Web References"
    <!-- En ella, habrá archivos raros que desconozco que son que tendrán los servicios relacionados. Serán 5 archivos con diferentes servicios. Luego estos servicios se llamarán en las clases aisladas del primer nivel de jerarquía del proyecto en el que estamos (Interfaces.Negocio). -->
 
 
-  -Interfaces.Servicios
-<!-- Encontramos una clase ServicioSEAC.cs que creará metodos para ejecutar servicios. 
-Los servicios están en clases dentro del proyecto "Interfaces.Negocio" por lo que deberemos instanciar esa clase para poder acceder a ellos. Un ejemplo: -->
 
+                                                -Interfaces.Servicios
+<!-- En este proyecto se llamarán a los servicios desarrollados en las clases del proyecto "Negocio" se hará mediente un metodo que será el final. 
+Un ejemplo: -->
 public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 {
     Negocio.ServicioBAC servicioBAC = new SondaIConstruye.Framework.Interfaces.Negocio.ServicioBAC(); 
-    return servicioBAC.SincronizarOrdenCompra(documento); 
+    return servicioBAC.SincronizarOrdenCompra (documento); 
 }
 
-<!-- En estos metodos del proyecto Servicios no solo nos conectamos con Interfaces.Negocio por usar servicios de sus clases, si no tambien con Interfaces.Interfaces ya que el nombre de los metodos es el mismo que el de los servicios dentro de la interfaz en Interfaces.Interfaces y se puede comprobar viendo que estan referenciados.  -->
+<!-- En estos metodos del proyecto Servicios no solo nos conectamos con Interfaces.Negocio por usar servicios de sus clases, si no tambien con Interfaces.Interfaces ya que el nombre de los metodos es el mismo que el de los servicios dentro de la interfaz en Interfaces.Interfaces y se puede comprobar viendo que la interfaz aparecen todos sus metodos como referenciados en este proyecto. -->
 
-<!-- Fin de la sección hija "Interfaces" de la sección padre "Interfaces" en resumen aquí se manejan los servicios locales de la solución. En Interfaces.Negocio hay clases donde estos servicios son desarrollados, en Interfaces.Interfaces se muestra una interfaz (IServicioSEAC) con todos los servicios desarrollados en "Negocio" dentro de ella. Y luego en Interfaces.Servicios se crean metodos que llamarán a estos servicios, pero en vez de llamarlos directamente de la interfaz IServicioSEAC en "Interfaces" los llama desde las clases donde fueron desarrollados en "Negocio". Y la única conexión que realiza con "Interfaces" es usar el mismo nombre que se le designo al servicio en la interfaz de "Interfaces".  -->
+<!-- Fin de la sección de Interfaces Locales. Continuamos con las interfaces de los sistemas externos. -->
 
 
 
@@ -130,25 +138,26 @@ public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 
 
 - Sección "Interop" 
-<!-- tendrá dos proyectos  -->
+<!-- PROYECTOS:  -->
                 --Datos: 
    <!-- tendrá los datos en una clase llamada "ProcesosDAO.cs".   -->
         
                 --Interop: 
-   <!-- tendrá dos carpetas (DTO && EXCEPTIONS) donde se encontrarán el objeto visual (DictamenProcuracionDTO) y las excepciones controladas. 
+   <!-- tendrá dos carpetas (DTO && EXCEPTIONS) donde se encontrarán el objeto visual (DictamenProcuracionDTO) y las excepciones controladas y 3 servicios. 
 
-También tendrá 3 clases en el mismo nivel de jerarquía a estas carpetas. -->
 
+<!-- CLASES: -->
                 --Conversor.cs
-   <!-- esta clase convertirá los datos de varios objetos visuales (DTO) -->
+   <!-- Esta clase convertirá los datos de Entidades tanto DTO, NH, como entidades provenientes del archivo ServicioSEAC que es uno de los 3 archivos de referencias en "Service References"  -->
 
                 --Servicio.cs
-   <!-- esta clase tendrá el servicio para conectarse con SIGAF. -->
+   <!-- En esta clase se crearán metodos que ejecutarán los servicios de interop, que se encuentran en la carpeta especial "ServicioSEAC" en Services References. Primero en el metodo deben crearse los objetos DTO que serán manipulados por el servicio y luego en un bloque try se ejecutará el servicio argumentado con el objeto creado. Se deben asignar valores a todas las propiedades necesarias del objeto DTO, estas se asignan con los argumentos del metodo.
+   Hay metodos que usarán servicios del archivo de referencias "RenderizacionDocumentos", no todos vendrán de "ServiciosSEAC".
+El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su sintaxis predecesora.-->
  
 
                 --UtilDTO.cs
-   <!-- en esta clase se desarrollan metodos públicos y estáticos que instanciaran clases de la solución es decir, crearán objetos. Para lograr esto necesitamos un servicio local, este busca a estas clases que se ubican en otra parte del código de la solución. Los valores de las propiedades se asignan con los parametros del metodo público y estático ejecutado.
-   Domicilio, ClasificadorPresupuestario, Comprobante son alguna de las clases instanciadas en esta clase.  -->
+   <!-- en esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos instanciar la clase que los posee para heredarlos, en este caso accedemos a la "carpeta especial" (ServicioSEAC) anidada en "Services References".
 
    <!-- AHORA LOS 4 PROYECTOS (BIBLIOTECAS DE CLASE) DEL PRIMER NIVEL DE JERARQUÍA -->
 
@@ -163,7 +172,8 @@ También tendrá 3 clases en el mismo nivel de jerarquía a estas carpetas. -->
 
 3. Procesos (44 proyectos)
 <!-- 
- -->
+En esta sección habrá proyectos donde se llamarán servicios de una clase llamada ServiciosSoapClient, esta clase estará dentro de la carpeta especial anidada en "Services Refereces" en el mismo proyecto y nivel de jerarquía que la clase Program.cs (la que invoca a su servicio). La clase ServiciosSoapClient además antes de ella tendrá un interface donde estarán todos los procesos disponibles del proyecto en el que nos encontremos.
+-->
 
 
 
@@ -189,7 +199,7 @@ También tendrá 3 clases en el mismo nivel de jerarquía a estas carpetas. -->
 
 5. Websites 
 <!-- 
-Es la capa de presentación, es decir el front end. Contendrá los formularios webs. 
+Es la capa de presentación de la aplicación web (el frontend). Contendrá los formularios webs. 
 -->
 
 
