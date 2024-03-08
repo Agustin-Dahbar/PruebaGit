@@ -3,21 +3,22 @@
 
 <!-- SECCIÓN INTERFACES  --> NAMESPACE DE LOS ARCHIVOS ENTRE ()
 
-<!-- Sección menor Interfaces -->
-ProcuracionDAO (Interfaces.Datos)
-<!-- Este archivo contiene metodos que crean comandos ejecutores de stored procedure de la db. Se deben adaptar estos procedimientos a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET, POST O PUT  -->
+<!-- ARCHIVOS DE INTERFACES.INTERFACES-->
+ProcuracionDAO.cs (clase de Interfaces.Datos)
+<!-- Este archivo contiene metodos que ejecutan procedimientos de la DB. Se debe realizar la adaptación del procedimiento a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET || POST || PUT  -->
 
 IServicioSEAC.cs (Interfaces.Interface)
 <!-- Este es el archivo que contiene la interface que encapsula todos los servicios locales.-->
 
-ServicioBAC.cs (Interfaces.Negocio)
+<!-- ARCHIVOS DE NEGOCIO  -->
+ServicioBAC.cs (clase de Interfaces.Negocio)
 <!-- En este archivo se llama a los servicios ubicados dentro de clases en la carpeta especial "WCF_BAC" de "Services References". Habrá diferentes regiones (secciones) que tendrán sus propios servicios. Ejemplo la Region "Proveedores". En esta región se llamarán a los servicios "AltaProveedor", "ModificacionProveedor", "BajaProveedor"  que se ubicarán en la clase "ServicioClient" (7280, (7357, 7361, 7365)) == líneas de código de la clase y sus servicios en la carpeta especial WCF_BAC.
 Esta clase ServicioClient de WCF_BAC solo será referenciada por este archivo (ServicioBAC.CS) y PresupuestoSIGAF.cs. El resto de archivos de Interfaces.Negocio no la usan. -->
 
 WCF_BAC (Interfaces.Negocio.Service References)
 <!-- Estos archivos dentro de "Service References" sirven para almacenar lógica o llamados a servicios que usarán el resto de archivos de la interfaz Negocio. Aquí estarán las referencias hechas al llamar servicios, de ahí el nombre de la sección. En el se encuentran clases, enumerados, interfaces, metodos, etcetera. Hay clases con distintos fines, por ejemplo, primero se declarán las clases que crearán los objetos involucrados en los servicios, para que estos sean los argumentos de los próximos servicios, las propiedades de estas clases tendrán una sintaxis desarrollada ya que se les darán capacidades de get y set y además en caso de SET se comprobará que el nuevo valor sea != al aún actual. Ya con esas clases que nos aseguren tener los argumentos de los servicios, creamos otras clases que encapsularán los servicios, no la lógica de ellos, si no el llamado a ellos, la lógica estará en un sistema externo..   -->
 
-ConversorGetBenificiario.cs (Interfaces.Negocio)
+ConversorGetBenificiario.cs (clase de Interfaces.Negocio)
 <!-- Este archivo contiene un metodo que se encarga de hacer una conversión de un objeto, en este caso un de "beneficiarioBean" a un "BeneficiarioSidif" 
 Este archivo no se conecta con el mismo archivo de "Web Services" para obtener los datos necesarios de sistemas externos, si no que lo hace con eSidifGetBeneficiario.   -->
 
@@ -26,6 +27,8 @@ eSidifGetBeneficiario (Interfaces.Negocio.Service References)
 <!-- Este es otro de los archivos que almacena las referencias de los servicios. Es el usado por la clase vista anterior. Lo usamos para heredar la clase con la que tiparemos al argumento.   -->
 
 
+
+<!-- ARCHIVO DE SERVICIOS -->
 ServicioSEAC.cs (Interfaces.Servicios)
  <!-- En el se crean metodos con try/catch que ejecutan los servicios locales desarrollados en las clases del proyecto "Negocio" de Interfaces.Interfaces.
  Los nombres de estos metodos coinciden con los nombres de los metodos de la interface IServicioSEAC ubicada en el proyecto "Interface" -->
@@ -47,21 +50,32 @@ public bool ModificacionProveedor(SondaIConstruye.Framework.Interop.ServicioSEAC
 Aunque si el archivo se llama ServicioSEAC no tiene mucho sentido pensar que son servicios externos, pero si no lo son, donde esta la lógica de los mismos entonces?  
 -->
 
+Conversor.cs
+<!-- 
+En este archivo se realizan conversiones de objetos DTO (visuales) a objetos NH (de base de datos). Literalmente hablando es una transferencia de datos. La lógica consiste en que el metodo recibe al objeto DTO. Se crea un objeto NH. Se comprueba que el argumento (objeto DTO) tenga valores para transferirle al objeto NH. Si los tiene llevamos a cabo la trasnferencia de valores, o mas bien un copy and paste ya que el objeto DTO no se borra ni pierde sus valores. Algunas trasnferencias requerirán de metodos como la conversión de la "PartidaPresupuestaria". Otros como la conversión del "ImporteCredito" serán muy simples nh.prop == dto.prop
+ -->
+
 Servicio.cs (Framework.Interop) Archivo suelto en el proyecto.
 <!--
-En este archivo se llaman a los servicios que se encuentran en ServicioSEAC.
+En esta clase se crearán metodos que ejecutarán los servicios de interop, que se encuentran en la carpeta especial "ServicioSEAC" en Services References. Primero en el metodo deben crearse los objetos DTO que serán manipulados por el servicio y luego en un bloque try se ejecutará el servicio argumentado con el objeto creado. Se deben asignar valores a todas las propiedades necesarias del objeto DTO, estas se asignan con los argumentos del metodo.
+   Hay metodos que usarán servicios del archivo de referencias "RenderizacionDocumentos", no todos vendrán de "ServiciosSEAC".
+El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su sintaxis predecesora.
 -->
 
 Util.DTO (Framework.Interop) Archivo suelto en el proyecto.
 <!-- 
-En este archivo se desarrollan metodos que crean los objetos que se necesitarán para los servicios de interop. Estas clases instanciadas son las desarrolladas en el "archivo base" de este proyecto ServicioSEAC. 
+En esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos acceder a ellos via la "carpeta especial" (ServicioSEAC) anidada en "Services References".
  -->
+ 
 
 
 
 <!-- PROYECTO: FRAMEWORK.INTEROP.DATOS -->
 ProcesosDAO
-<!-- Pendiente -->
+<!-- En este archivo se crean metodos que ejecutarán procedimientos de la base de datos. Estos procediminetos tienen que ver con la modificación del estado del proceso en interop.
+La lógica para el mapeo del procedimiento es la siguiente.
+ Primero mapeamos la base de datos en una instancia de la clase "Database", la inicializamos con el metodo que la mapeará ( CreateDatabase() ) argumentamos el metodo con el nombre de la base de datos.
+ Segundo mapeamos el procedimiento en una instancia de la clase DbCommand, inicializamos la instancia con el metodo que mapeará al procedure( GetStoredProcCommand() ) lo argumentamos con el nombre del procedure. Para ejecutar este metodo debemos estar parados sobre la instancia de la DB recién creada. -->
 
 
 

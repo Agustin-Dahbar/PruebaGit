@@ -101,14 +101,14 @@ Mediante metodos que ejecutan procesos de la base de datos. La lógica consiste 
 
 
                                                 -Interfaces.EntidadDTO
-<!-- En este proyecto se encuentran los objetos que serán manipulados por los servicios,  -->
+<!-- En este proyecto se encuentran las clases creadoras de los objetos visuales que serán manipulados por los servicios. -->
 
 
 
                                                 -Interfaces.Interfaces
-<!-- En este proyecto se crea una interface pública que almacena el total de los servicios disponibles para usar sobre la solución local SEAC. Cada servicio tendrá un atributo descriptivo. [OperationContract]
-Estos servicios serán argumentados con los objetos que manipulen, que se encontrarán usualmente en el proyecto "Interfaces.EntidadDTO"
-Cada servicio de esta clase será referenciado en Interfaces.Servicios -->
+<!-- En este proyecto se crea una interface pública que almacena todos los servicios locales para usar sobre  SEAC. Cada servicio tendrá un atributo descriptivo == [OperationContract]
+Estos servicios deberán ser argumentados con los objetos que deben manipular, objetos creados a partir del proyecto anterior (EntidadDTO)
+Cada servicio de esta clase será referenciado en Interfaces.Servicios, donde se llamará finalmente.-->
 
 
 
@@ -149,7 +149,7 @@ public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 
 <!-- CLASES: -->
                 --Conversor.cs
-   <!-- Esta clase convertirá los datos de Entidades tanto DTO, NH, como entidades provenientes del archivo ServicioSEAC que es uno de los 3 archivos de referencias en "Service References"  -->
+   <!-- En esta clase se realizarán conversiones de objetos DTO a NH. Literalmente hablando lo que haremos será trasnferir datos del DTO al NH. Serán dos objetos diferentes. Se crean metodos que reciben como argumentos objetos DTO. Ya en el flujo de ejecución de los metodos convertores primeramente se realiza la instancia de clase deseada, en este caso el objeto NH. Luego se comprueba que el argumento (objeto DTO) tenga datos, una vez comprobado que los tiene se realizan las trasnferencias de datos para crear el nuevo objeto NH requerido. Algunas transferencias requerirán de metodos de por medio ej: "PartidaPresupuestaria" (el primer metodo) -->
 
                 --Servicio.cs
    <!-- En esta clase se crearán metodos que ejecutarán los servicios de interop, que se encuentran en la carpeta especial "ServicioSEAC" en Services References. Primero en el metodo deben crearse los objetos DTO que serán manipulados por el servicio y luego en un bloque try se ejecutará el servicio argumentado con el objeto creado. Se deben asignar valores a todas las propiedades necesarias del objeto DTO, estas se asignan con los argumentos del metodo.
@@ -158,8 +158,7 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
  
 
                 --UtilDTO.cs
-   <!-- en esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos instanciar la clase que los posee para heredarlos, en este caso accedemos a la "carpeta especial" (ServicioSEAC) anidada en "Services References".
-
+   <!-- En esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos acceder a ellos via la "carpeta especial" (ServicioSEAC) anidada en "Services References" que es donde se encuentran las clases creadoras.
    <!-- AHORA LOS 4 PROYECTOS (BIBLIOTECAS DE CLASE) DEL PRIMER NIVEL DE JERARQUÍA -->
 
 
