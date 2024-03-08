@@ -13,13 +13,12 @@ La solución se divide en diferente secciones que serán carpetas, las más impo
 <!-- Esta sección es la capa de las entidades de se encontrarán los objetos que serán mapeados al proyecto desde la base de datos, específicamente desde las tablas, sus filas serán las entidades mapeadas como objetos. 
 Cada sección tiene diferentes proyectos (bibliotecas de clases que se encargarán de diferentes tareas con relación a estos objetos). 
 
-PROYECTOS (bibliotecas de clases) -->
-SondaIConstruye.Framework.(Entidad.DTO/Entidad.NH/Enums/Hubs/Mappings)
-<!-- Cada proyecto tendrá muchas carpetas dentro, esto refiere a los esquemas de la DB. Cada esquema tendrá sus clases que contendrán el código que crea y maneja a las Entidades.-->
 
 
 
 <!-- PROYECTOS: -->
+Las carpetas dentro de ellos representan a los esquemas de la DB que tendrán adentro las tablas (clases)
+                                                
                                                 --SondalIConstruye.Framework.Entidad.DTO
 <!-- 
 En este proyecto se encontrará el objeto visual. Es el objeto que será devuelto en el Frontend. 
@@ -84,24 +83,23 @@ Ejemplo:
 
 
 
-2. Interfaces (11 proyectos)
+2. Interfaces (11 proyectos) (Interfaces, Interop, VOY POR ACA Anses, GDE, LoginAuth, OAuthServer)
 
-<!-- Esta sección es donde se encontraran todos los llamados a servicios externos o locales que hayamos realizado. Necesitaremos de ciertos sistemas/servicios externos. 
+<!-- Esta sección es donde se encontrarán todos los llamados a servicios externos o locales que hayamos realizado. Necesitaremos de ciertos sistemas/servicios externos. 
 Ej: Autorizar en SIDICO, obtener número de expediente en GDE.
 
-En el primer nivel de jerarquía se encuentran 2 secciones (carpetas con proyectos dentro) y 4 proyectos sueltos (bibliotecas de clases) las explicaremos: -->
-
-- Sección "Interfaces"
-<!-- Esta sección manejará los servicios locales. Se divide en 5 proyectos, ellos harán referencia a los datos, los objetos DTO, las interfaces, la lógica de negocio y los servicios -->
+<!-- Empecemos con sus subsecciones -->
+- Subsección "Interfaces"
+<!-- Esta sección manejará los servicios locales, los de la solución SEAC (COMPR.AR), no los de sistemas externos. Se divide en 5 proyectos, las desarrollamos a continuación: -->
 
                                                 -Interfaces.Datos
 <!-- En este proyecto se crea, actualiza o busca un objeto de la clase ticket en la base de datos.
-Mediante metodos que ejecutan procesos de la base de datos. La lógica consiste en mapear la base de datos y el procedure instanciando las clases correctas y en la asignación de esta instancia ejecutar un metodo para realizar el mapeo de base de datos y proceso, estos metodos son: CreateDataBase() y GetStoredProcedure(), ambos metodos deben argumentarse con el nombre de la DB y del SP. (DATABASE, STORED PROCEDURE)  -->
+Mediante metodos que llaman y ejecutan STORED PROCEDURES de la base de datos. La lógica consiste en mapear la base de datos y el procedure creando instancias de las clases correctas (Database, DbCommand) y en la asignación de esta instancia ejecutar un metodo para realizar el mapeo de ambos, estos metodos son: CreateDataBase() y GetStoredProcedure(), ambos metodos deben argumentarse con el nombre de la DB y del SP.-->
         
 
 
                                                 -Interfaces.EntidadDTO
-<!-- En este proyecto se encuentran las clases creadoras de los objetos visuales que serán manipulados por los servicios. -->
+<!-- En este proyecto se encuentran las clases creadoras de los objetos visuales que serán manipulados por los servicios. Dentro de las clases tendremos las propiedades que podrán tener o no atributos, asi como podrán tener o no capacidades GET y SET. La clase tendrá los atributos [Serializable, DataContract]. En algunas clases habrá enumerados (contenedores de múltiples opciones != de las cuáles solo una será devuelta). 
 
 
 

@@ -1,16 +1,21 @@
 <!-- LOS MAS IMPORTANTES: -->
 
 
-<!-- SECCIÓN INTERFACES  --> NAMESPACE DE LOS ARCHIVOS ENTRE ()
+<!-- SECCIÓN INTERFACES  --> 
 
-<!-- ARCHIVOS DE INTERFACES.INTERFACES-->
+<!-- ARCHIVOS DE LA SUBSECCIÓN INTERFACES-->
+<!-- PROYECTO DATOS -->
 ProcuracionDAO.cs (clase de Interfaces.Datos)
 <!-- Este archivo contiene metodos que ejecutan procedimientos de la DB. Se debe realizar la adaptación del procedimiento a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET || POST || PUT  -->
 
+<!-- PROYECTO ENTIDADDTO-->
+DetalleBoleta.cs (clase de Interfaces.EntidadDTO)
+
+<!-- PROYECTO INTERFACE -->
 IServicioSEAC.cs (Interfaces.Interface)
 <!-- Este es el archivo que contiene la interface que encapsula todos los servicios locales.-->
 
-<!-- ARCHIVOS DE NEGOCIO  -->
+<!-- PROYECTO NEGOCIO  -->
 ServicioBAC.cs (clase de Interfaces.Negocio)
 <!-- En este archivo se llama a los servicios ubicados dentro de clases en la carpeta especial "WCF_BAC" de "Services References". Habrá diferentes regiones (secciones) que tendrán sus propios servicios. Ejemplo la Region "Proveedores". En esta región se llamarán a los servicios "AltaProveedor", "ModificacionProveedor", "BajaProveedor"  que se ubicarán en la clase "ServicioClient" (7280, (7357, 7361, 7365)) == líneas de código de la clase y sus servicios en la carpeta especial WCF_BAC.
 Esta clase ServicioClient de WCF_BAC solo será referenciada por este archivo (ServicioBAC.CS) y PresupuestoSIGAF.cs. El resto de archivos de Interfaces.Negocio no la usan. -->
@@ -28,7 +33,7 @@ eSidifGetBeneficiario (Interfaces.Negocio.Service References)
 
 
 
-<!-- ARCHIVO DE SERVICIOS -->
+<!-- PROYECTO SERVICIOS -->
 ServicioSEAC.cs (Interfaces.Servicios)
  <!-- En el se crean metodos con try/catch que ejecutan los servicios locales desarrollados en las clases del proyecto "Negocio" de Interfaces.Interfaces.
  Los nombres de estos metodos coinciden con los nombres de los metodos de la interface IServicioSEAC ubicada en el proyecto "Interface" -->
