@@ -11,13 +11,13 @@ La solución se divide en diferente secciones (serán carpetas), las más import
 
 1. Entidades (5 proyectos)
 <!-- Esta sección es la capa de las entidades de se encontrarán los objetos que serán mapeados al proyecto desde la base de datos, específicamente desde las tablas, sus filas serán las entidades mapeadas como objetos. 
-Cada sección tiene diferentes proyectos (bibliotecas de clases que se encargarán de diferentes tareas con relación a estos objetos). 
+Cada sección tiene diferentes proyectos (bibliotecas de clases que se encargarán de diferentes tareas con relación a estos objetos). --> 
 
 
 
 
-<!-- PROYECTOS: -->
-En el primer nivel de jerarquía de varios proyectos habrá carpetas, estas representaran el esquema de la base de datos donde esta ubicada la tabla (clase en el caso del IDE visual studio). 
+PROYECTOS:
+<!--En el primer nivel de jerarquía de varios proyectos habrá carpetas, estas representaran el esquema de la base de datos donde esta ubicada la tabla (clase en el caso del IDE visual studio) -->
                                                 
                                                 --SondalIConstruye.Framework.Entidad.DTO
 <!-- 
@@ -76,7 +76,7 @@ Ejemplo:
 <!-- El framework NA EVERNET se ocupará al hacer de hacer las tareas al nosotros ejecutarlas con: Pliego.Save(), Pliego.Find() o la que corresponda. -->
 
 
-
+FIN SECCIÓN ENTIDADES
 
 
 
@@ -84,7 +84,7 @@ Ejemplo:
  -->
 
 
-
+SECCIÓN: 
 
 2. Interfaces (11 proyectos) (Interfaces, Interop, VOY POR ACA Anses, GDE, LoginAuth, OAuthServer)
 <!-- Aquí es donde nos podremos conectar a los servicios externos al necesitarlos, hay diferentes maneras para hacer esto, podemos crear el enchufe que necesitamos, lo uso y lo "tiró" Ej: autorizar en sidico, debemos llamar al servicio externo, podemos hacer la referencia del servicio externo, crear el webservice local a nivel código, llamarlo y manejar el resultado, pero hay que hacerlo muchas veces en todo el proyecto, llamar al mismo servicio )clases de Service references) o distintos, o incluso hay veces que el extremo del servicio cambia (cambio de sistema, en este caso se deberá modificar todos los llamados al servicio del sistema anterior, al tener la sección interfaces tendremos fácilidad para encontrar estos llamados) -->
@@ -93,7 +93,7 @@ Ejemplo:
 Ej: Autorizar en SIDICO, obtener número de expediente en GDE.
 
 <!-- Empecemos con sus subsecciones -->
-- Subsección "Interfaces"
+- SUBSECCIÓN "INTERFACES"
 <!-- Esta sección manejará los servicios locales, los de la solución SEAC (COMPR.AR), no los de sistemas externos. Se divide en 5 proyectos, las desarrollamos a continuación: -->
 
                                                 -Interfaces.Datos
@@ -103,7 +103,7 @@ Mediante metodos que llaman y ejecutan STORED PROCEDURES de la base de datos. La
 
 
                                                 -Interfaces.EntidadDTO
-<!-- En este proyecto se encuentran las clases creadoras de los objetos visuales que serán manipulados por los servicios. Dentro de las clases tendremos las propiedades que podrán tener o no atributos, asi como podrán tener o no capacidades GET y SET. La clase tendrá los atributos [Serializable, DataContract]. En algunas clases habrá enumerados (contenedores de múltiples opciones != de las cuáles solo una será devuelta). 
+<!-- En este proyecto se encuentran las clases creadoras de los objetos visuales que serán manipulados por los servicios. Dentro de las clases tendremos las propiedades que podrán tener o no atributos, asi como podrán tener o no capacidades GET y SET. La clase tendrá los atributos [Serializable, DataContract]. En algunas clases habrá enumerados (contenedores de múltiples opciones != de las cuáles solo una será devuelta). -->
 
 
 
@@ -140,16 +140,16 @@ public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 
 
 
-- PROYECTOS "Interop" 
-<!-- PROYECTOS:  -->
+- SUBSECCIÓN "Interop" 
+PROYECTOS:  
                 --Datos: 
    <!-- tendrá los datos en una clase llamada "ProcesosDAO.cs".   -->
         
                 --Interop: 
-   <!-- tendrá dos carpetas (DTO && EXCEPTIONS) donde se encontrarán el objeto visual (DictamenProcuracionDTO) y las excepciones controladas y 3 servicios. 
+   <!-- tendrá dos carpetas (DTO && EXCEPTIONS) donde se encontrarán el objeto visual (DictamenProcuracionDTO) y las excepciones controladas y 3 servicios. -->
 
 
-<!-- CLASES: -->
+CLASES SUELTAS: 
                 --Conversor.cs
    <!-- En esta clase se realizarán conversiones de objetos DTO a NH. Literalmente hablando lo que haremos será trasnferir datos del DTO al NH. Serán dos objetos diferentes. Se crean metodos que reciben como argumentos objetos DTO. Ya en el flujo de ejecución de los metodos convertores primeramente se realiza la instancia de clase deseada, en este caso el objeto NH. Luego se comprueba que el argumento (objeto DTO) tenga datos, una vez comprobado que los tiene se realizan las trasnferencias de datos para crear el nuevo objeto NH requerido. Algunas transferencias requerirán de metodos de por medio ej: "PartidaPresupuestaria" (el primer metodo) -->
 
@@ -163,15 +163,29 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
    <!-- En esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos acceder a ellos via la "carpeta especial" (ServicioSEAC) anidada en "Services References" que es donde se encuentran las clases creadoras.
    <!-- AHORA LOS 4 PROYECTOS (BIBLIOTECAS DE CLASE) DEL PRIMER NIVEL DE JERARQUÍA -->
 
+ FIN DE LA SUBSECCIÓN INTEROP.
+
+AHORA ESTARÁN LOS 4 PROYECTOS SUELTOS DE LA SECCIÓN INTERFACES  
+
+COMPRAR.Interfaces.ANSES
+<!-- En este proyecto se encontrarán las interfaces de ANSES -->
 
 
--PROYECTO COMPRAR.Interfaces.GDE
+ COMPRAR.Interfaces.GDE
 <!-- En este proyecto se encontrarán las interfaces de GDE (que son todas las llamadas del expediente) -->
 
 
-
--PROYECTO LoginAuth
+LoginAuth
 <!-- La interface entre la solución de COMPRAR y la solución de AUTENTIFICACION (que debemos tener abierta para desarrollar en comprar, esta solución es otro sistema que se conecta con COMPRAR.)  -->
+
+
+OAuthServer
+<!--  -->
+
+
+
+FIN DE LA SECCIÓN INTERFACES 
+
 
 
 <!-- 
@@ -179,12 +193,11 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
 
 
 
-
+<!-- SECCIÓN: -->
 3. Procesos (44 proyectos)
-<!-- El sistema tiene muchas tareas programadas que se deben ejecutar cada cierto tiempo (algunas online y otras offline, es decir cuando no haya usuarios operando) para ejecutarlas se crea un proyecto que contendrá una clase (Program.cs) que ejecutará los procesos. Para ejecutar estos procesos se deberá obtener una contraseña desde el archivo App.config, además debemos instanciar la clase que contiene al proceso (esta clase será ServiciosSoapClient y se encontrará en el archivo de ConnectedServices). Luego, en el bloque try con esa instancia heredaremos y ejecutaremos al proceso. 
+<!-- El sistema tiene muchas tareas programadas que se deben ejecutar cada cierto tiempo (algunas online y otras offline, es decir cuando no haya usuarios operando) para ejecutarlas se crea un proyecto que contendrá una clase (Program.cs) que ejecutará los procesos. Para ejecutar estos procesos se deberá obtener una contraseña desde el archivo App.config, además debemos instanciar la clase que contiene al proceso (esta clase será en la mayoría de casos ServiciosSoapClient y se encontrará en el archivo de ConnectedServices, también pueden ser interfaces). Luego, en el bloque try con esa instancia heredaremos y ejecutaremos al proceso. 
 Proyecto comentado en la solución: EjecucionVersionadoOfertas  -->
 
-<!--  -->
 
 
 <!-- 
@@ -192,35 +205,51 @@ En esta sección habrá proyectos donde se llamarán servicios de una clase llam
 -->
 
 
+<!-- FIN SECCIÓN PROCESOS -->
 
 
 <!-- 
 -->
 
 
-
-
+SECCIÓN:
 4. Servicios (5 proyectos)
-                                                    -- Proyecto Servicios
-    Aquí se almacenarán dentro de una interface todos los servicios que se usarán en esta sección de la solución.
-<!-- 
- -->
+<!-- En esta sección se encuentra la mayor parte de la lógica de negocio.. Específicamente en el proyecto Servicios.Impl -->
 
+PROYECTOS:
+                                                    -- Servicios
+<!--Aquí se almacenarán dentro de una interface todos los servicios que se usarán en esta sección d la solución-->
+
+                                                    -- ServiciosAFIP
+<!-- Aqui -->
+
+                                                    --Servicios.Impl
+<!--  -->
+                                                    --Servicios.Web
+<!--  -->
+                                                    --Sonda.Procesos.Servicios
+<!--  -->
 
 
 
 <!-- 
 -->
-
 
 
 
 5. Websites 
 <!-- 
-Es la capa de presentación de la aplicación web (el frontend). Contendrá los formularios webs. 
+Es la capa de presentación de la aplicación web (el frontend). Contendrá los formularios webs. Tendrá 3 proyectos (en la solución SEAC) también usaremos el proyecto de la solucion APICOMPRAR. 
+Necesitamos que estos 3 proyectos de Websites se ejecuten simultaneamente, para eso hacer la siguiente configuración, en la solución Click derecho -> Propiedades -> Proyecto de inicio -> Proyectos de inicio múltiples (chx checked) y en el cuadro buscar los 3 proyectos e indicar "Iniciar"
 -->
+PROYECTO                                                    Sonda.Framework.Website.Web
+<!-- En este proyecto se encontrará la página de COMPR.AR. Todos los formularios a los que podemos acceder navegando por comprar. -->
 
+PROYECTO                                                    Sonda.Procesos.Web
+<!-- En este proyecto se encontrarán todas las tareas programadas, los procesos vistos anteriormente. -->
 
+PROYECTO                                                    SondaConstruye.Framework.Interfaces.Host
+<!-- En este proyecto se encontrarán las llamadas a otros servicios. Es decir, cada vez que deba llamar a algún servicio externo(GDE, API DE USUARIOS) se deberá usar este proyecto de interface. -->
 
 
 

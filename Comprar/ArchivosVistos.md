@@ -60,7 +60,7 @@ ServicioSEAC.cs (Interfaces.Servicios)
 
 
 
--SECCIÓN INTEROP 
+-SUBSECCIÓN INTEROP 
 <!-- PROYECTO: FRAMEWORK.INTEROP -->
 ServicioSEAC (Framework.Interop.ServicioSEAC) Archivo dentro de "Service References" 
 <!--
@@ -105,8 +105,7 @@ La lógica para el mapeo del procedimiento es la siguiente.
 
 
 
-
-<!-- SECCIÓN SERVICIOS -->
+ SECCIÓN SERVICIOS 
 
 <!-- PROYECTO: SERVICIOS -->
 IUsuarioService.cs (Servicios.Servicios esquema Adm)
