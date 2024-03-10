@@ -4,6 +4,7 @@
 <!-- SECCIÓN INTERFACES  --> 
 
 <!-- ARCHIVOS DE LA SUBSECCIÓN INTERFACES-->
+
 <!-- PROYECTO DATOS -->
 ProcuracionDAO.cs (clase de Interfaces.Datos)
 <!-- Este archivo contiene metodos que ejecutan procedimientos de la DB. Se debe realizar la adaptación del procedimiento a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET || POST || PUT  -->
@@ -13,11 +14,11 @@ DetalleBoleta.cs (clase de Interfaces.EntidadDTO)
 
 <!-- PROYECTO INTERFACE -->
 IServicioSEAC.cs (Interfaces.Interface)
-<!-- Este es el archivo que contiene la interface que encapsula todos los servicios locales.-->
+<!-- Este es el archivo que contiene la interface que encapsula todos los servicios locales. A la interface se le da el atributo [ServiceContract] que indica que la interface es un servicio de comunicación en un sistema basado en servicios web. Esto significa que otros programas puedan comunicarse con la interface a través de servicios web. Dentro de la interface se encontrarán todos los metodos que representarán a los servicios de SEAC, cada uno de ellos tendrá el atributo [OperationContract] que indica que el metodo es una operación que está disponible para ser invocada y usada por los clientes conectados a través del servicio web. Este atributo se utiliza en conjunto con [ServiceContract] -->
 
 <!-- PROYECTO NEGOCIO  -->
 ServicioBAC.cs (clase de Interfaces.Negocio)
-<!-- En este archivo se llama a los servicios ubicados dentro de clases en la carpeta especial "WCF_BAC" de "Services References". Habrá diferentes regiones (secciones) que tendrán sus propios servicios. Ejemplo la Region "Proveedores". En esta región se llamarán a los servicios "AltaProveedor", "ModificacionProveedor", "BajaProveedor"  que se ubicarán en la clase "ServicioClient" (7280, (7357, 7361, 7365)) == líneas de código de la clase y sus servicios en la carpeta especial WCF_BAC.
+<!-- En este archivo se llama a los servicios ubicados dentro de clases en la carpeta especial "WCF_BAC" de "Services References". Habrá diferentes regiones en el archivo que tendrán sus propios servicios. Ejemplo la Region "Proveedores". En esta región se llamarán a los servicios "AltaProveedor", "ModificacionProveedor", "BajaProveedor"  que se ubicarán en la clase "ServicioClient" (7280, (7357, 7361, 7365)) == líneas de código de la clase y sus servicios en la carpeta especial WCF_BAC.
 Esta clase ServicioClient de WCF_BAC solo será referenciada por este archivo (ServicioBAC.CS) y PresupuestoSIGAF.cs. El resto de archivos de Interfaces.Negocio no la usan. -->
 
 WCF_BAC (Interfaces.Negocio.Service References)
@@ -35,8 +36,8 @@ eSidifGetBeneficiario (Interfaces.Negocio.Service References)
 
 <!-- PROYECTO SERVICIOS -->
 ServicioSEAC.cs (Interfaces.Servicios)
- <!-- En el se crean metodos con try/catch que ejecutan los servicios locales desarrollados en las clases del proyecto "Negocio" de Interfaces.Interfaces.
- Los nombres de estos metodos coinciden con los nombres de los metodos de la interface IServicioSEAC ubicada en el proyecto "Interface" -->
+ <!-- En el se crean metodos encapsuladores con try/catch que ejecutan los servicios locales desarrollados en las clases del proyecto "Negocio" de Interfaces.Negocio.
+ Los nombres de estos metodos coinciden con los nombres de los metodos anidados en la interface IServicioSEAC ubicada en el proyecto "Interface" -->
 
 
 <!-- Sección Interop -->
@@ -84,6 +85,20 @@ La lógica para el mapeo del procedimiento es la siguiente.
 
 
 
+<!-- SECCIÓN SERVICIOS -->
+
+<!-- PROYECTO: SERVICIOS -->
+IUsuarioService.cs (Servicios.Servicios esquema Adm)
+<!-- 
+ Aquí se encontrarán todos los servicios disponibles. De aquí se llamaran al ser usados en los otros proyectos de la sección "Servicios"
+ -->
+
+<!-- PROYECTO: SERVICIOS.IMPL -->
+MensajeriaOrdenCompraAbiertaService (Servicios.IMPL esquema OC)
+
+AbstractMensajeriaService (Servicios.IMPL esquema Broker)
+<!-- 
+ -->
 
 
 

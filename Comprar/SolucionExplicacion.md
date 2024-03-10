@@ -183,6 +183,8 @@ En esta sección habrá proyectos donde se llamarán servicios de una clase llam
 
 
 4. Servicios (5 proyectos)
+                                                    -- Proyecto Servicios
+    Aquí se almacenarán dentro de una interface todos los servicios que se usarán en esta sección de la solución.
 <!-- 
  -->
 
