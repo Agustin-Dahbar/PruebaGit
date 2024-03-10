@@ -1,10 +1,29 @@
 <!-- LOS MAS IMPORTANTES: -->
 
+<!-- SECCION ENTIDADES -->
 
-<!-- SECCIÓN INTERFACES  --> 
+<!-- PROYECTO ENUMERADOS -->
+Estados.cs (clase de SondalConstruye.Framework.Enums) <!--ENUMERADOS-->
+<!--Este archivo contendrá todos los enumerados que representen los diferentes estados posibles d las entidades-->
+EstadoConvenioMarcoEnum.cs (clase de SondalConstruye.Framework.Enums) <!--METODO-->
+<!-- Este archivo contendrá un metodo llamado GetDescription() que devolverá un string, este string se obtendrá del enumerado EstadoConvenio que proviene del archivo Estados.cs. La lógica de estos metodos es crear un arreglo de strings  -->
+EstadoConvenioMarcoEnum.cs (clase de SondalConstruye.Framework.Enums) <!--METODO-->
+<!-- Contiene metodo que devuelve el estado del ConvenioMarco al recibirlo como argumento.  -->
 
-<!-- ARCHIVOS DE LA SUBSECCIÓN INTERFACES-->
+EstadoSolicitudCompraEnum (clase de SondalConstruye.Framework.Enums) <!--METODO-->
+<!-- Esta clase se encarga de devolver el estado de la solicitud de compra, el orden de sucesos es:
+Se crea una propiedad que almacenará el estado, estará tipada con el enumerado del que vendrá el valor. 
+Luego se declara un metodo que se argumenta con el valor del estado de la solicitud, proveniente del enumerado, ese argumento es asignado como valor de la propiedad declarada anteriormente.
+Declaramos un metodo (Value) que le dará la capacidad get y set a la propiedad "value" la que almacenará el valor del estado. 
+Por último se crea el metodo que devolverá el valor de la propiedad es decir, el estado de la solicitud de compra.  -->
 
+
+<!-- 
+ -->
+
+
+SECCIÓN INTERFACES   
+<!-- SUBSECCIÓN INTERFACES-->
 <!-- PROYECTO DATOS -->
 ProcuracionDAO.cs (clase de Interfaces.Datos)
 <!-- Este archivo contiene metodos que ejecutan procedimientos de la DB. Se debe realizar la adaptación del procedimiento a C# y luego se realiza la ejecución del mismo para realizar una solicitud GET || POST || PUT  -->
@@ -40,8 +59,8 @@ ServicioSEAC.cs (Interfaces.Servicios)
  Los nombres de estos metodos coinciden con los nombres de los metodos anidados en la interface IServicioSEAC ubicada en el proyecto "Interface" -->
 
 
-<!-- Sección Interop -->
 
+-SECCIÓN INTEROP 
 <!-- PROYECTO: FRAMEWORK.INTEROP -->
 ServicioSEAC (Framework.Interop.ServicioSEAC) Archivo dentro de "Service References" 
 <!--
@@ -85,6 +104,8 @@ La lógica para el mapeo del procedimiento es la siguiente.
 
 
 
+
+
 <!-- SECCIÓN SERVICIOS -->
 
 <!-- PROYECTO: SERVICIOS -->
@@ -97,11 +118,13 @@ IUsuarioService.cs (Servicios.Servicios esquema Adm)
 MensajeriaOrdenCompraAbiertaService (Servicios.IMPL esquema OC)
 
 AbstractMensajeriaService (Servicios.IMPL esquema Broker)
+
 <!-- 
  -->
 
 
-
+<!-- SECCION PROCESOS -->
+EjecucionVersionadoOfertas (proyecto que contendrá el ejecutable Program.cs donde se llamará al proceso requerido)
 
 
 

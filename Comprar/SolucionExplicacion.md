@@ -1,4 +1,4 @@
-La solución se divide en diferente secciones que serán carpetas, las más importantes son:
+La solución se divide en diferente secciones (serán carpetas), las más importantes son:
 
 1. Entidades
 2. Interfaces
@@ -17,20 +17,20 @@ Cada sección tiene diferentes proyectos (bibliotecas de clases que se encargar�
 
 
 <!-- PROYECTOS: -->
-Las carpetas dentro de ellos representan a los esquemas de la DB que tendrán adentro las tablas (clases)
+En el primer nivel de jerarquía de varios proyectos habrá carpetas, estas representaran el esquema de la base de datos donde esta ubicada la tabla (clase en el caso del IDE visual studio). 
                                                 
                                                 --SondalIConstruye.Framework.Entidad.DTO
 <!-- 
 En este proyecto se encontrará el objeto visual. Es el objeto que será devuelto en el Frontend. 
 (DTO == Data Transfer Object; Objeto de transferencia de datos) 
-Los objetos de este proyecto son el puentes entre la sección de datos y el resto de secciones de la solución.
-La sección de datos (seccion "Entidades") solo ve los objetos de bases de datos, los del proyecto NH pero cuando lo tiene que compartir a la presentación o a la interfaz lo que se comparte es el DTO, NO EL NH.
+Las entidades DTO son el puente entre la sección de datos (Entidades.NH) y el resto de secciones de la solución.
+La sección de datos (Entidades.NH) solo ve los objetos de bases de datos pero cuando lo tiene que compartir a la presentación o a la interfaz lo que se comparte es el DTO, NO EL NH.
 -->
 
 
                                                 --SondaIConstruye.Framework.Entidad.NH
 <!--
-En este proyecto se encontrarán los objetos de la base de datos, es decir es la creación más completa y auténtica posible del objeto. Es el objeto Backend, no se mostrará en el frontend. 
+En este proyecto se encontrarán los objetos de la base de datos, es decir es la creación más completa y auténtica posible del objeto. Es el objeto Backend, no se mostrará en el frontend. Es una capa de datos. 
 Estos objetos se crearán a partir de clases que determinarán sus propiedades y metodos, estarán en la carpeta "NH" en el esquema correspondiente (carpeta) dentro del proyecto.
 LAS CLASES DE ESTE PROYECTO HEREDERÁN DE DomainObject (clase del framework NA EVERNET, EL ORM PARA MAPEO) 
 La ruta a este proyecto es:
@@ -44,10 +44,13 @@ Clases == Tablas; Objetos == Filas; Propiedades == Columnas.
 
                                                 --SondalIConstruye.Framework.Enums
 <!-- 
-En este proyecto se encontrarán clases dentro tendrán interfaces, estos devolverán una opción entre muchas posibles. Por ej un interfaz tendrá todos los "Estados" de un pliego posibles, y devolverá uno solo de ellos por cada pliego, en el código de la solución los comentamos para verlos en profundidad.
+En este proyecto se encontrarán archivos con clases dentro que tendrán interfaces o metodos que devolverán opciones de interfaces. Las interfaces tendrán diferentes posibles que podrán devolver, separadas por comas. Por ej un interfaz tendrá todos los "Estados" de un pliego posibles, devolverá uno solo de ellos por cada pliego, en el código de la solución los comentamos para verlos en profundidad.
 Habrá dos tipos de clases, las que contengan enumerados encargados de crear los diferentes estados y las clases que contengan los metodos que manejarán la lógica para retornar los estados del objeto correspondiente.
 Ejemplo, tendremos una clase "Estados.cs" (en el Explorador de Soluciones) en sintaxis donde se accede a ella se llamara "EnuEstados", esta clase es del primer tipo posee muchos enumerados que contiene las diferentes opciones,estados, descripciones para diferentes objetos, ej hay un enumerado con los estados del ConvenioMarco y luego hay otra clase (EstadoConvenioMarcoEnum.cs) que mediante un metodo devuelve esta información, esta información se argumenta al metodo y se obtiene desde el enumerado en el otro archivo.
 Entonces los archivos con enumerados tienen fines de capa de datos (data layer) y los archivos con metodos que son argumentados con los valores de estos enumerados para ser devueltos en el front end tienen fines de capa de negocio (business layer)  
+
+<!-- Archivo con metodo que devuelve un valor obtenido de un enumerado : -->
+EstadoConvenioMarcoEnum.cs
 -->
 
 
@@ -84,6 +87,7 @@ Ejemplo:
 
 
 2. Interfaces (11 proyectos) (Interfaces, Interop, VOY POR ACA Anses, GDE, LoginAuth, OAuthServer)
+<!-- Aquí es donde nos podremos conectar a los servicios externos al necesitarlos, hay diferentes maneras para hacer esto, podemos crear el enchufe que necesitamos, lo uso y lo "tiró" Ej: autorizar en sidico, debemos llamar al servicio externo, podemos hacer la referencia del servicio externo, crear el webservice local a nivel código, llamarlo y manejar el resultado, pero hay que hacerlo muchas veces en todo el proyecto, llamar al mismo servicio )clases de Service references) o distintos, o incluso hay veces que el extremo del servicio cambia (cambio de sistema, en este caso se deberá modificar todos los llamados al servicio del sistema anterior, al tener la sección interfaces tendremos fácilidad para encontrar estos llamados) -->
 
 <!-- Esta sección es donde se encontrarán todos los llamados a servicios externos o locales que hayamos realizado. Necesitaremos de ciertos sistemas/servicios externos. 
 Ej: Autorizar en SIDICO, obtener número de expediente en GDE.
@@ -136,7 +140,7 @@ public bool SincronizarOrdenCompra(DocumentoContractualSIGAF documento)
 
 
 
-- Sección "Interop" 
+- PROYECTOS "Interop" 
 <!-- PROYECTOS:  -->
                 --Datos: 
    <!-- tendrá los datos en una clase llamada "ProcesosDAO.cs".   -->
@@ -161,6 +165,14 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
 
 
 
+-PROYECTO COMPRAR.Interfaces.GDE
+<!-- En este proyecto se encontrarán las interfaces de GDE (que son todas las llamadas del expediente) -->
+
+
+
+-PROYECTO LoginAuth
+<!-- La interface entre la solución de COMPRAR y la solución de AUTENTIFICACION (que debemos tener abierta para desarrollar en comprar, esta solución es otro sistema que se conecta con COMPRAR.)  -->
+
 
 <!-- 
 -->
@@ -169,6 +181,12 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
 
 
 3. Procesos (44 proyectos)
+<!-- El sistema tiene muchas tareas programadas que se deben ejecutar cada cierto tiempo (algunas online y otras offline, es decir cuando no haya usuarios operando) para ejecutarlas se crea un proyecto que contendrá una clase (Program.cs) que ejecutará los procesos. Para ejecutar estos procesos se deberá obtener una contraseña desde el archivo App.config, además debemos instanciar la clase que contiene al proceso (esta clase será ServiciosSoapClient y se encontrará en el archivo de ConnectedServices). Luego, en el bloque try con esa instancia heredaremos y ejecutaremos al proceso. 
+Proyecto comentado en la solución: EjecucionVersionadoOfertas  -->
+
+<!--  -->
+
+
 <!-- 
 En esta sección habrá proyectos donde se llamarán servicios de una clase llamada ServiciosSoapClient, esta clase estará dentro de la carpeta especial anidada en "Services Refereces" en el mismo proyecto y nivel de jerarquía que la clase Program.cs (la que invoca a su servicio). La clase ServiciosSoapClient además antes de ella tendrá un interface donde estarán todos los procesos disponibles del proyecto en el que nos encontremos.
 -->
