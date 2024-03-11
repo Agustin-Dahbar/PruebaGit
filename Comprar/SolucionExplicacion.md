@@ -216,18 +216,19 @@ SECCIÓN:
 4. Servicios (5 proyectos)
 <!-- En esta sección se encuentra la mayor parte de la lógica de negocio.. Específicamente en el proyecto Servicios.Impl -->
 
-PROYECTOS:
-                                                    -- Servicios
+PROYECTO                                                     -- Servicios
 <!--Aquí se almacenarán dentro de una interface todos los servicios que se usarán en esta sección d la solución-->
 
-                                                    -- ServiciosAFIP
+PROYECTO                                                    -- ServiciosAFIP
 <!-- Aqui -->
 
-                                                    --Servicios.Impl
+PROYECTO                                                    --Servicios.Impl
 <!--  -->
-                                                    --Servicios.Web
+
+PROYECTO                                                    --Servicios.Web
 <!--  -->
-                                                    --Sonda.Procesos.Servicios
+
+PROYECTO                                                    --Sonda.Procesos.Servicios
 <!--  -->
 
 
@@ -246,13 +247,37 @@ PROYECTO                                                    Sonda.Framework.Webs
 <!-- En este proyecto se encontrará la página de COMPR.AR. Todos los formularios a los que podemos acceder navegando por comprar. -->
 
 PROYECTO                                                    Sonda.Procesos.Web
-<!-- En este proyecto se encontrarán todas las tareas programadas, los procesos vistos anteriormente. -->
+<!-- En este proyecto se encontrarán todas las tareas programadas, es decir, los procesos. -->
 
 PROYECTO                                                    SondaConstruye.Framework.Interfaces.Host
-<!-- En este proyecto se encontrarán las llamadas a otros servicios. Es decir, cada vez que deba llamar a algún servicio externo(GDE, API DE USUARIOS) se deberá usar este proyecto de interface. -->
+<!-- En este proyecto se encontrarán las llamadas a otros servicios. Es decir, cada vez que deba llamar a algún servicio externo (GDE, API DE USUARIOS) se deberá usar este proyecto de interface. -->
+
+
+
+
+
+
+<!-- RAMAS USADAS EN SEAC -->
+El repositorio tendrá 3 ramas fijas (hotfix, testing, prod). Las ramas que se crean heredan el contenido de otra. 
+
+HOTFIX (corrección de errores)
+<!-- Esta rama es una copia de prod, en ella se corrigen errores de producción. 
+Al completarse la corrección, la rama se fusiona en la rama principal tanto en las ramas de desarrollo activas como sea necesario para asegurar que el problema se resuelva en todas las versiones futuras del software. -->
+
+TESTING 
+<!-- Esta rama se utiliza para realizar un testeo de las nuevos cambios antes de hacerle el pull request a la rama de producción. -->
+
+PROD
+<!-- En esta rama se encuentra el proyecto expuesto a los clientes. El producto final.
+Los cambios de esta rama se realizan a través de fusiones de ramas de desarrollo, no se usa para realizar cambios. -->
+
+Para desarrollar debemos crear una nueva rama parados en la rama que corresponda según nuestra tarea. Es decir, para realizar modificaciones de producción, nos paramos en hotfix, creamos una rama propia para desarrollar que herede de hotfix y allí podemos desarrollar sin arruinar hotfix. Una vez notemos que en nuestra rama clon de hotfix estan correctos pasamos los cambios a hotfix (git checkout rama--file o pull request?), y de allí se deploya en el ambiente de pruebas, si esta todo correcto se pasa a producción (pull request) y finalmente allí se hace el despliegue.
 
 
 
 <!-- EXTRAS -->
+Con CTRL + F12 nos redirecciona a la implementación de lo buscado, mientras que con f12 nos llevará a su interfaz.
+
+<!-- ATRIBUTOS VISTOS EN LA SOLUCIÓN -->
 [Serializable] 
-//Indica que todos los campos públicos y privados (no estáticos) de la clase se pueden serializar. Por lo tanto, los objetos de esa clase pueden ser convertidos en un flujo de bytes que pueden ser almacenados o transmitidos. Esto es especialmente útil en aplicaciones que necesitan persistir datos o comunicarse con otros sistemas.
+<!-- Indica que todos los campos públicos y privados (no estáticos) de la clase se pueden serializar. Por lo tanto, los objetos de esa clase pueden ser convertidos en un flujo de bytes que pueden ser almacenados o transmitidos. Esto es especialmente útil en aplicaciones que necesitan persistir datos o comunicarse con otros sistemas. -->
