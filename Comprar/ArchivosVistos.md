@@ -1,6 +1,6 @@
 <!-- LOS MAS IMPORTANTES: -->
 
-<!-- SECCION ENTIDADES -->
+ SECCION ENTIDADES 
 
 <!-- PROYECTO ENUMERADOS -->
 Estados.cs (clase de SondalConstruye.Framework.Enums) <!--ENUMERADOS-->
@@ -122,15 +122,22 @@ AbstractMensajeriaService (Servicios.IMPL esquema Broker)
  -->
 
 
-<!-- SECCION PROCESOS -->
+
+
+SECCION PROCESOS 
+<!-- Cada proceso será un proyecto que dentro tendrá una clase (Program.cs) con sus Services References -->
 EjecucionVersionadoOfertas (proyecto que contendrá el ejecutable Program.cs donde se llamará al proceso requerido)
 
 
 
 
 
-<!-- Secciones -->
-
+SECCIÓN WEBSITES
+<!--  PROYECTO: SondaIConstruye.Framework.Interfaces.Host-->
+Global.asax
+<!-- Esta clase tendrá metodos para manejar los diferentes eventos de la aplicación web en el largo de su ciclo de vida, estos metodos provienen de la clase HttpApplication, por lo tanto hay que darle la herencia correspondiente a la clase. -->
+ServicioSEAC.svc
+<!-- En este archivo  -->
 
 
 

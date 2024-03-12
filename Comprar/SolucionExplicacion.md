@@ -247,10 +247,18 @@ PROYECTO                                                    Sonda.Framework.Webs
 <!-- En este proyecto se encontrará la página de COMPR.AR. Todos los formularios a los que podemos acceder navegando por comprar. -->
 
 PROYECTO                                                    Sonda.Procesos.Web
-<!-- En este proyecto se encontrarán todas las tareas programadas, es decir, los procesos. -->
+<!-- En este proyecto se encontrarán todas las tareas programadas, es decir, los procesos.
+
+GPT:
+ Este proyecto se centra en la implementación de la lógica de negocio relacionada con los procesos específicos de la aplicación web. Aquí se manejan las operaciones de back-end que gestionan y procesan datos, como la validación de formularios, el acceso a la base de datos y la ejecución de acciones relacionadas con los procesos empresariales. -->
 
 PROYECTO                                                    SondaConstruye.Framework.Interfaces.Host
-<!-- En este proyecto se encontrarán las llamadas a otros servicios. Es decir, cada vez que deba llamar a algún servicio externo (GDE, API DE USUARIOS) se deberá usar este proyecto de interface. -->
+<!-- En este proyecto se encontrarán las llamadas a otros servicios. Es decir, cada vez que deba llamar a algún servicio externo (GDE, API DE USUARIOS) se deberá usar este proyecto de interface. 
+En este proyecto habrá un archivo de configuración ( Global.asax ) este archivo tendrá una clase con metodos, esta clase heredará de HttpApplication
+
+GPT:
+ En este proyecto se encuentra la lógica de integración y comunicación con otros sistemas o servicios externos. Se encarga de proporcionar una interfaz unificada y segura para la interacción entre la aplicación web y otros sistemas, como servicios de terceros, APIs o sistemas de backend, facilitando la interoperabilidad y la comunicación eficiente entre diferentes componentes de software. 
+ -->
 
 
 
@@ -281,3 +289,25 @@ Con CTRL + F12 nos redirecciona a la implementación de lo buscado, mientras que
 <!-- ATRIBUTOS VISTOS EN LA SOLUCIÓN -->
 [Serializable] 
 <!-- Indica que todos los campos públicos y privados (no estáticos) de la clase se pueden serializar. Por lo tanto, los objetos de esa clase pueden ser convertidos en un flujo de bytes que pueden ser almacenados o transmitidos. Esto es especialmente útil en aplicaciones que necesitan persistir datos o comunicarse con otros sistemas. -->
+
+
+
+
+                    EXPLICACIÓN BREVE DE LAS SECCIONES DE COMPRAR VIA GPT
+
+<!-- En caso de mi explicación haber sido insuficiente, dejo las descripciones del chat para terminar de cerrar los conceptos:  -->
+
+Entidades:
+    <!-- Esta sección contiene la información principal sobre los elementos fundamentales de tu negocio, como clientes, productos, empleados y proveedores, facilitando su gestión y seguimiento. -->
+
+Interfaces:
+    <!-- Aquí se encuentran las diferentes interfaces de usuario diseñadas para interactuar con la aplicación, proporcionando una experiencia intuitiva y eficiente para los usuarios finales, ya sea en dispositivos móviles o de escritorio. -->
+
+Procesos: 
+    <!-- Esta sección define y organiza las distintas operaciones y flujos de trabajo que se llevan a cabo dentro de tu empresa, desde la solicitud de un servicio hasta la entrega del producto final, con el objetivo de optimizar la eficiencia y la calidad. -->
+
+Servicios:
+    <!-- Aquí se encuentran los servicios ofrecidos por tu empresa, tanto internos como externos, detallando sus características, precios y condiciones para satisfacer las necesidades de los clientes y mantener la competitividad en el mercado. -->
+
+Websites: 
+    <!-- Esta sección alberga los sitios web asociados a tu empresa, permitiendo la gestión y personalización de su contenido, diseño y funcionalidades para promover la marca, atraer clientes y ofrecer información relevante sobre productos y servicios. -->
