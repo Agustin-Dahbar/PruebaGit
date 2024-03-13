@@ -154,13 +154,20 @@ CLASES SUELTAS:
    <!-- En esta clase se realizarán conversiones de objetos DTO a NH. Literalmente hablando lo que haremos será trasnferir datos del DTO al NH. Serán dos objetos diferentes. Se crean metodos que reciben como argumentos objetos DTO. Ya en el flujo de ejecución de los metodos convertores primeramente se realiza la instancia de clase deseada, en este caso el objeto NH. Luego se comprueba que el argumento (objeto DTO) tenga datos, una vez comprobado que los tiene se realizan las trasnferencias de datos para crear el nuevo objeto NH requerido. Algunas transferencias requerirán de metodos de por medio ej: "PartidaPresupuestaria" (el primer metodo) -->
 
                 --Servicio.cs
-   <!-- En esta clase se crearán metodos que ejecutarán los servicios de interop, que se encuentran en la carpeta especial "ServicioSEAC" en Services References. Primero en el metodo deben crearse los objetos DTO que serán manipulados por el servicio y luego en un bloque try se ejecutará el servicio argumentado con el objeto creado. Se deben asignar valores a todas las propiedades necesarias del objeto DTO, estas se asignan con los argumentos del metodo.
+   <!-- En esta clase se crearán metodos que ejecutarán los servicios o crearán a las entidades de interop. Si crean entidades recibirán un argumento por cada propiedad, se debera instanciar la clase "Proveedor" accediendo a ella mediante "ServicioSEAC" archivo que se encuentra en ServiceReferences donde esta la clase a instanciar. Al crear el objeto asignaremos los argumentos del metodo como el valor de sus propiedades, ejemplo de metodo de este tipo: GetDomicilio.
+   Si los metodos llaman a servicios se deberá instanciar a la clase específica (ServicioSEACClient) del archivo "ServicioSeac". Con esta nueva instancia podremos utilizar dentro de un try el servicio deseado. En algunos metodos deberemos crear el objeto al que el servicio afectará como en el metodo ModificarProveedor() y AltaProveedor(), donde se debe crear al nuevo proveedor y luego se le asignaran los args del metodo como valor de las propiedades tal cual como se realiza en los metodos de creación de entidades, en vez de ejecución de servicios.
+   Un ejemplo de un metodo de ejecución de servicios que no cree una entidad es BajaProveedor(), ya que a diferencia de los metodos vistos recién en los que se realizaba la creación y modificación del mismo (create y update, solicitud post y put) en este de eliminación (delete, solicitud DELETE) no se precisa que el usuario de datos que el backend deba recibir, simplemente se debe eliminar un dato existente, al no requerir de datos de entada, no precisamos responder a ellos almacenandolos en un objeto que debamos crear. Simplemente nos ahorramos eso y ejecutamos el llamado al servicio mediante la instancia de clase (sc) de la clase que anida al servicio (ServicioSEACCLient).
+
    Hay metodos que usarán servicios del archivo de referencias "RenderizacionDocumentos", no todos vendrán de "ServiciosSEAC".
-El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su sintaxis predecesora.-->
+El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su sintaxis predecesora.
+-->
+Ejemplos: 
+Metodo encapsulador: ConsultarServicioESIDIF()
+Instancia de clase poseedora del servicio: ServicioSEACClient
  
 
                 --UtilDTO.cs
-   <!-- En esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos acceder a ellos via la "carpeta especial" (ServicioSEAC) anidada en "Services References" que es donde se encuentran las clases creadoras.
+   <!-- En esta clase se desarrollan metodos públicos y estáticos que crearán los objetos DTO necesarios en interop. Para esto debemos acceder a ellos via "ServicioSEAC" en "Services References" que es donde se encuentran las clases creadoras de estos objetos DTO.
    <!-- AHORA LOS 4 PROYECTOS (BIBLIOTECAS DE CLASE) DEL PRIMER NIVEL DE JERARQUÍA -->
 
  FIN DE LA SUBSECCIÓN INTEROP.
@@ -168,7 +175,8 @@ El error al llamar a "ServicioSEACClient" se soluciona borrando ServicioSEAC. su
 AHORA ESTARÁN LOS 4 PROYECTOS SUELTOS DE LA SECCIÓN INTERFACES  
 
 COMPRAR.Interfaces.ANSES
-<!-- En este proyecto se encontrarán las interfaces de ANSES -->
+<!-- En este proyecto se encontrarán las interfaces de ANSES. En 5 de las 6 clases (excepto LoginAnsesXML.cs)
+se realizarán Gets, serán metodos que llamarán a servicios  -->
 
 
  COMPRAR.Interfaces.GDE
@@ -223,7 +231,8 @@ PROYECTO                                                    -- ServiciosAFIP
 <!-- Aqui -->
 
 PROYECTO                                                    --Servicios.Impl
-<!--  -->
+<!-- En este proyecto se encontrará la gran mayoría de lógica de negocio de la solución. Dentro del proyecto habrá carpetas que separaran las secciones tal cual ya habiamos visto en anteriores proyectos  de anteriores secciones (Entidades: (EntidadNH, EntidadDTO, Mappings) )
+En cada sección se encontrarán clases que tendrán la lógica de negocio que afectará a esa sección anidadora de la clase. Ej: En la sección (carpeta) "Pli" (Pliego) se encontrarán clases como    -->
 
 PROYECTO                                                    --Servicios.Web
 <!--  -->

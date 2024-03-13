@@ -97,7 +97,7 @@ En esta clase se desarrollan metodos públicos y estáticos que crearán los obj
 
 <!-- PROYECTO: FRAMEWORK.INTEROP.DATOS -->
 ProcesosDAO
-<!-- En este archivo se crean metodos que ejecutarán procedimientos de la base de datos. Estos procediminetos tienen que ver con la modificación del estado del proceso en interop.
+<!-- En este archivo se crean metodos que ejecutarán procedimientos de la base de datos. Estos procedimientos tienen que ver con la modificación del estado del proceso en interop.
 La lógica para el mapeo del procedimiento es la siguiente.
  Primero mapeamos la base de datos en una instancia de la clase "Database", la inicializamos con el metodo que la mapeará ( CreateDatabase() ) argumentamos el metodo con el nombre de la base de datos.
  Segundo mapeamos el procedimiento en una instancia de la clase DbCommand, inicializamos la instancia con el metodo que mapeará al procedure( GetStoredProcCommand() ) lo argumentamos con el nombre del procedure. Para ejecutar este metodo debemos estar parados sobre la instancia de la DB recién creada. -->
@@ -137,7 +137,7 @@ SECCIÓN WEBSITES
 Global.asax
 <!-- Esta clase tendrá metodos para manejar los diferentes eventos de la aplicación web en el largo de su ciclo de vida, estos metodos provienen de la clase HttpApplication, por lo tanto hay que darle la herencia correspondiente a la clase. -->
 ServicioSEAC.svc
-<!-- En este archivo  -->
+<!-- En este archivo habrá una etiqueta que hara la referencia  -->
 
 
 
